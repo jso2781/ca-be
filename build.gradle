@@ -68,7 +68,7 @@ dependencies {
      implementation fileTree(dir: 'libs/oz', include: ['*.jar'])
 
     // Dev
-    // developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     // page helper
     implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.7'
 
