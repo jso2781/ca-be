@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kids.domain.ca.mail.mapper.EmlSndngMapper">
+
+    <!-- 등록 -->
+    <insert id="insertEmlSndng" >
+        <selectKey keyProperty="emlSndngSn" resultType="java.math.BigInteger" order="BEFORE">
+            SELECT nextval('tb_ca_m_eml_sndng_seq')
+        </selectKey>
+        INSERT INTO public.tb_ca_m_eml_sndng (
+                                          eml_sndng_sn
+                                        , eml_ttl
+                                        , eml_cn
+                                        , sndpty_flnm
+                                        , sndpty_eml_addr
+                                        , rcvr_flnm
+                                        , rcvr_eml_addr
+                                        , rcvr_jbps_nm
+                                        , sndng_rslt_cd
+                                        , atch_file_id
+                                        , sndng_dttm
+                                        , reg_dt
+                                        , rgtr_id
+                                ) VALUES (
+                                           #{emlSndngSn}
+                                         , #{emlTtl}
+                                         , #{emlCn}
+                                         , #{sndptyFlnm}
+                                         , #{sndptyEmlAddr}
+                                         , #{rcvrFlnm}
+                                         , #{rcvrEmlAddr}
+                                         , #{rcvrJbpsNm}
+                                         , #{sndngRsltCd}
+                                         , #{atchFileId}
+                                         , #{sndngDttm}
+                                         , NOW()
+                                         , #{rgtrId}
+                                         )
+    </insert>
+
+    <update id="updateResult">
+        -- UPDATE kids_own.tb_ca_e_eml_sndng  = 내부망에서 주석 해제
+        UPDATE public.tb_ca_m_eml_sndng
+        SET sndng_rslt_cd  = COALESCE(#{sndngRsltCd}, sndng_rslt_cd)
+          , mdfcn_dt       = now()
+          , mdfr_id        = COALESCE(#{mdfrId}, mdfr_id)
+        WHERE eml_sndng_sn = #{emlSndngSn}
+    </update>
+</mapper>

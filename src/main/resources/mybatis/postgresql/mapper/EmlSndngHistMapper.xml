@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kids.domain.ca.mail.mapper.EmlSndngHistMapper">
+
+    <!-- 등록 -->
+    <insert id="insertHist">
+        <selectKey keyProperty="emlSndngHistSn" resultType="java.math.BigInteger" order="BEFORE">
+          --  SELECT nextval('kids_own.tb_ca_l_eml_sndng_hist_seq')
+            SELECT nextval('tb_ca_l_eml_sndng_hist_seq')
+        </selectKey>
+        INSERT INTO public.tb_ca_l_eml_sndng_hist (
+        --INSERT INTO "TB_CA_L_EML_SNDNG_HIST" (
+                                                    eml_sndng_hist_sn
+                                                  , eml_sndng_sn
+                                                  , rcvr_eml_addr
+                                                  , rcvr_flnm
+                                                  , sndng_rslt_cd
+                                                  , fail_rsn_cn
+                                                  , sndng_try_cnt
+                                                  , sndng_dttm
+                                                  , ext_sndng_rslt_cd
+                                                  , ext_fail_msg
+                                                  , ext_msg_id
+                                                  , reg_dt
+                                                  , rgtr_id
+                                                ) VALUES (
+                                                             #{emlSndngHistSn}
+                                                           , #{emlSndngSn}
+                                                           , #{rcvrEmlAddr}
+                                                           , #{rcvrFlnm}
+                                                           , #{sndngRsltCd}
+                                                           , #{failRsnCn}
+                                                           , #{sndngTryCnt}
+                                                           , #{sndngDttm}
+                                                           , #{extSndngRsltCd}
+                                                           , #{extFailMsg}
+                                                           , #{extMsgId}
+                                                           , NOW()
+                                                           , #{rgtrId}
+                                                         )
+    </insert>
+    <select id="selectMailSendList" resultType="kr.or.kids.domain.ca.mail.vo.MailListVO">
+
+        SELECT
+              h.eml_sndng_hist_sn                     AS seqNo
+            , h.sndng_rslt_cd                         AS status
+            , h.rcvr_eml_addr                         AS receiver
+            , m.eml_ttl                               AS subject
+            , h.sndng_dttm                            AS sendDateTime
+            , h.fail_rsn_cn                           AS reason
+        FROM public.tb_ca_l_eml_sndng_hist h
+        INNER JOIN public.tb_ca_m_eml_sndng m
+                ON h.eml_sndng_sn = m.eml_sndng_sn
+         ORDER BY h.sndng_dttm DESC
+
+    </select>
+
+
+</mapper>

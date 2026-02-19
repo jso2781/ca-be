@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.go.kids.domain.mbr.mapper.SttyAgtInfoMapper">
+
+    <select id="getSttyAgtInfo" parameterType="SttyAgtInfoPVO" resultType="SttyAgtInfoRVO" >
+        /* 대국민포털_법정대리인정보기본 조회 (SttyAgtInfoMapper.getSttyAgtInfo) */
+        SELECT
+             mbr_no
+            ,stty_agt_nm
+            ,stty_agt_encpt_telno
+            ,stty_agt_rel
+            ,link_info_idntf_id
+            ,cert_token
+            ,rgtr_id
+            ,reg_dt
+            ,reg_prgrm_id
+            ,mdfr_id
+            ,mdfcn_dt
+            ,mdfcn_prgrm_id
+        FROM kids_own.tb_pp_m_stty_agt_info
+        WHERE 1=1
+        AND mbr_no = #{mbrNo}
+    </select>
+
+    <insert id="insertSttyAgtInfo" parameterType="SttyAgtInfoPVO">
+        /* 대국민포털_법정대리인정보기본 입력 (SttyAgtInfoMapper.insertSttyAgtInfo) */
+        INSERT INTO kids_own.tb_pp_m_stty_agt_info
+        (
+             mbr_no
+            ,stty_agt_nm
+            ,stty_agt_encpt_telno
+            ,stty_agt_rel
+            ,link_info_idntf_id
+            ,cert_token
+            ,rgtr_id
+            ,reg_dt
+            ,reg_prgrm_id
+            ,mdfr_id
+            ,mdfcn_dt
+            ,mdfcn_prgrm_id
+        )
+        VALUES
+        (
+             #{mbrNo}
+            ,#{sttyAgtNm}
+            ,#{sttyAgtEncptTelno}
+            ,#{sttyAgtRel}
+            ,#{linkInfoIdntfId}
+            ,#{certToken}
+            ,#{rgtrId}
+            ,now()
+            ,#{regPrgrmId}
+            ,#{mdfrId}
+            ,now()
+            ,#{mdfcnPrgrmId}
+        )
+    </insert>
+
+    <update id="updateSttyAgtInfo" parameterType="SttyAgtInfoPVO">
+        /* 대국민포털_법정대리인정보기본 수정 (SttyAgtInfoMapper.updateSttyAgtInfo) */
+        UPDATE kids_own.tb_pp_m_stty_agt_info
+        SET
+             stty_agt_nm = coalesce(#{sttyAgtNm}, stty_agt_nm)
+            ,stty_agt_encpt_telno = coalesce(#{sttyAgtEncptTelno}, stty_agt_encpt_telno)
+            ,stty_agt_rel = coalesce(#{sttyAgtRel}, stty_agt_rel)
+            ,link_info_idntf_id = coalesce(#{linkInfoIdntfId}, link_info_idntf_id)
+            ,cert_token = coalesce(#{certToken}, cert_token)
+            ,mdfr_id = coalesce(#{mdfrId}, mdfr_id)
+            ,mdfcn_dt = now()
+            ,mdfcn_prgrm_id = coalesce(#{mdfcnPrgrmId}, mdfcn_prgrm_id)
+        WHERE 1=1
+        AND mbr_no = #{mbrNo}
+    </update>
+
+    <insert id="saveSttyAgtInfo" parameterType="SttyAgtInfoPVO">
+        /* 대국민포털_법정대리인정보기본 저장 (SttyAgtInfoMapper.insertSttyAgtInfo) */
+        INSERT INTO kids_own.tb_pp_m_stty_agt_info
+        (
+             mbr_no
+            ,stty_agt_nm
+            ,stty_agt_encpt_telno
+            ,stty_agt_rel
+            ,link_info_idntf_id
+            ,cert_token
+            ,rgtr_id
+            ,reg_dt
+            ,reg_prgrm_id
+            ,mdfr_id
+            ,mdfcn_dt
+            ,mdfcn_prgrm_id
+        )
+        VALUES
+        (
+             #{mbrNo}
+            ,#{sttyAgtNm}
+            ,#{sttyAgtEncptTelno}
+            ,#{sttyAgtRel}
+            ,#{linkInfoIdntfId}
+            ,#{certToken}
+            ,#{rgtrId}
+            ,now()
+            ,#{regPrgrmId}
+            ,#{mdfrId}
+            ,now()
+            ,#{mdfcnPrgrmId}
+        )
+        ON CONFLICT(mbr_no)
+        DO UPDATE SET
+             stty_agt_nm = coalesce(excluded.stty_agt_nm, kids_own.tb_pp_m_stty_agt_info.stty_agt_nm)
+            ,stty_agt_encpt_telno = coalesce(excluded.stty_agt_encpt_telno, kids_own.tb_pp_m_stty_agt_info.stty_agt_encpt_telno)
+            ,stty_agt_rel = coalesce(excluded.stty_agt_rel, kids_own.tb_pp_m_stty_agt_info.stty_agt_rel)
+            ,link_info_idntf_id = coalesce(excluded.link_info_idntf_id, kids_own.tb_pp_m_stty_agt_info.link_info_idntf_id)
+            ,cert_token = coalesce(excluded.cert_token, kids_own.tb_pp_m_stty_agt_info.cert_token)
+            ,mdfr_id = coalesce(excluded.mdfr_id, kids_own.tb_pp_m_stty_agt_info.mdfr_id)
+            ,mdfcn_dt = now()
+            ,mdfcn_prgrm_id = coalesce(excluded.mdfcn_prgrm_id, kids_own.tb_pp_m_stty_agt_info.mdfcn_prgrm_id)
+    </insert>
+
+    <delete id="deleteSttyAgtInfo" parameterType="SttyAgtInfoDVO">
+        /* 대국민포털_법정대리인정보기본 삭제 (SttyAgtInfoMapper.deleteSttyAgtInfo) */
+        DELETE FROM kids_own.tb_pp_m_stty_agt_info
+        WHERE 1=1
+        AND mbr_no = #{mbrNo}
+    </delete>
+
+</mapper>

@@ -1,0 +1,138 @@
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  error:
+    include-message: always
+    include-exception: true
+    include-stacktrace: always
+    include-binding-errors: never
+    path: /error
+    whitelabel:
+      enabled: false
+
+spring:
+  redis:
+    #host: redis-dev-headless.redis-dev
+    #port: 6379
+    host: 192.168.2.149
+    port: 30901
+    password: kids2025!
+    timeout: 2000ms
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 200KB
+      max-file-size: 150MB
+      max-request-size: 150MB
+  thymeleaf:
+    cache: false
+  mvc:
+    view:
+      prefix: /views
+      suffix: .jsp
+  jmx:
+    enabled: false
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: ${DB_URL}?tcpKeepAlive=true&connectTimeout=10&socketTimeout=600
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      connection-timeout: 5000
+      validation-timeout: 1000
+      maximum-pool-size: 30
+      minimum-idle: 5
+      connection-test-query: SELECT 1
+  path:
+    fileUploadDir: /inusquare/upload
+    urlFilePath: /
+    evdnDocFileUploadDir: /resources/doc
+  web:
+    resources:
+      add-mappings: true
+  mail:
+    host: mail.drugsafe.or.kr
+    port: 25
+ #  username: ${EMAIL_USERNAME}
+ #  password: ${EMAIL_PASSWORD}   # Gmail 앱 비밀번호
+    username: kids@drugsafe.or.kr
+    password: 6k7i0d0s
+  protocol: smtp
+  default-encoding: UTF-8
+  test-mode: true
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true  # 'false'에서 'true'로 변경 (XML과 일치)
+        connectiontimeout: 5000
+        timeout: 5000
+        writetimeout: 5000
+        debug: true  # 추가 (XML과 일치)
+surem:
+  base-url: https://api.surem.com
+  user-code: YOUR_USER_CODE
+  secret-key: YOUR_SECRET_KEY
+address:
+  openapi:
+    url: https://business.juso.go.kr/addrink/addrLinkUrl.do
+    key: devU01TX0FVVEgyMDI2MDEwOTEzMDY1ODExNzQwOTQ=
+springdoc:
+  swagger-ui:
+    #    doc-expansion: full           # API 목록 접힘 (선택)
+    default-model-expand-depth: 5
+    default-models-expand-depth: 5
+
+jwt:
+  issuer: kids_user
+  secret-key: ZGQtaW90LXBjd2ViLWFwaS1hZG1pbi1zZWNyZXRrZXk=
+  access-token-expiration: 1800000        # 30분 (ms), ex) 7 * 24 * 60 * 60 * 1000 -> 7일
+  refresh-token-expiration: 1209600000   # 14일 (ms), ex) 365 * 24 * 60 * 60 * 1000 -> 365일
+  refresh-token-name: KIDS_REFRESH_TOKEN
+  idle-timeout-millis: 1800000  # 30분
+
+file:
+  storePath: /data/storage
+  encryptkey: 12345678901234567890123456789012
+  algorithm: AES/CBC/PKCS5Padding
+  url: /files
+
+#  redis:
+#   host: 192.168.2.149
+#   port: 30901
+#   password: kids2025!
+#   timeout: 2000ms
+
+logging:
+  level:
+    com.kids.ca.aapi: DEBUG
+    jdbc.sqltiming: INFO
+    jdbc.resultsettable: INFO
+
+mybatis:
+  type-aliases-package: kr.or.kids
+  mapper-locations:
+    - classpath*:mybatis/postgresql/mapper/**/*.xml
+  configuration:
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    use-column-label: true
+    auto-mapping-behavior: partial
+    auto-mapping-unknown-column-behavior: WARNING
+    default-executor-type: simple
+    default-statement-timeout: 30
+    default-fetch-size: 100
+    safe-row-bounds-enabled: false
+    map-underscore-to-camel-case: false
+    local-cache-scope: session
+    jdbc-type-for-null: NULL
+    variables:
+      db_encrypt_key: "1234567890"

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kids.domain.ca.msg.mapper.MsgSndngMapper">
+
+    <insert id="insertMsgSndng"
+            parameterType="kr.or.kids.domain.ca.msg.vo.MsgSndngVO">
+
+        <!-- seqno 채번 -->
+        <selectKey keyProperty="seqno"  resultType="java.math.BigDecimal" order="BEFORE">
+            SELECT nextval('tb_ca_i_msg_sndng_seq')
+        </selectKey>
+        INSERT INTO public.tb_ca_i_msg_sndng (
+                                                seqno
+                                              , intime
+                                              , usercode
+                                              , biztype
+                                              , yellow_key
+                                              , reqname
+                                              , reqphone
+                                              , callname
+                                              , country
+                                              , callphone
+                                              , subject
+                                              , msg
+                                              , reqtime
+                                              , sendtime
+                                              , rectime
+                                              , result
+                                              , errcode
+                                              , kind
+                                              , fkcontent
+                                              , retry
+                                              , resend
+                                              , templatecode
+                                              , retext
+                                              , sendmedia
+                                              , mediatype
+                                              , attachment
+                                              , supplement
+                                              , carousel
+                                              , header
+                                              , kakaorecord
+                                              , template_title
+                                              , targeting
+                                              , campaignname
+                                              , orig_code
+                                              , processid
+                                              , etc1
+                                              , etc2
+                                              , etc3
+                                              , etc4
+                                              , etc5
+                                              , rgtr_id
+                                              , mdfcn_dt
+                                              , mdfr_id
+                                              ) VALUES (
+                                                #{seqno}
+                                              , #{intime}
+                                              , #{usercode}
+                                              , #{biztype}
+                                              , #{yellowKey}
+                                              , #{reqname}
+                                              , #{reqphone}
+                                              , #{callname}
+                                              , #{country}
+                                              , #{callphone}
+                                              , #{subject}
+                                              , #{msg}
+                                              , #{reqtime}
+                                              , #{sendtime}
+                                              , #{rectime}
+                                              , #{result}
+                                              , #{errcode}
+                                              , #{kind}
+                                              , #{fkcontent}
+                                              , #{retry}
+                                              , #{resend}
+                                              , #{templatecode}
+                                              , #{retext}
+                                              , #{sendmedia}
+                                              , #{mediatype}
+                                              , #{attachment}
+                                              , #{supplement}
+                                              , #{carousel}
+                                              , #{header}
+                                              , #{kakaorecord}
+                                              , #{templateTitle}
+                                              , #{targeting}
+                                              , #{campaignname}
+                                              , #{origCode}
+                                              , #{processid}
+                                              , #{etc1}
+                                              , #{etc2}
+                                              , #{etc3}
+                                              , #{etc4}
+                                              , #{etc5}
+                                              , #{rgtrId}
+                                              , #{mdfcnDt}
+                                              , #{mdfrId}
+                                                )
+    </insert>
+    <select id="selectMsgList" resultType="kr.or.kids.domain.ca.msg.vo.MsgListVO">
+
+        SELECT
+              seqno                                   AS seqNo
+            , result                                  AS status
+            , kind                                    AS type
+            , reqphone                                AS recvPhone
+            , subject                                 AS title
+            , msg                                     AS message
+            , intime                                  AS sendDateTime
+            , rectime                                 AS receiveDateTime
+        FROM public.tb_ca_i_msg_sndng
+        ORDER BY intime DESC
+    </select>
+
+</mapper>

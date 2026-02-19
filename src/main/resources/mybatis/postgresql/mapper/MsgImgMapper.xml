@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kids.domain.ca.msg.mapper.MsgImgMapper">
+
+    <select id="selectNextMsgImgSn" resultType="java.math.BigDecimal">
+        SELECT nextval('tb_ca_i_msg_img_seq')
+    </select>
+    <insert id="insertMsgImg" >
+        INSERT INTO public.tb_ca_i_msg_img (
+                                                msg_img_sn
+                                              , seqno
+                                              , file_cnt
+                                              , file_path1
+                                              , file_path2
+                                              , file_path3
+                                              , image_key
+                                              , biztype
+                                              , extern_img_url
+                                              , flag
+                                              , upload_message
+                                              , usercode
+                                              , regtime
+                                              , expirytime
+                                              , reg_dt
+                                              , rgtr_id
+                                              , mdfrn_dt
+                                              , mdfr_id
+                                            ) VALUES (
+                                                        #{msgImgSn}
+                                                      , #{seqno}
+                                                      , #{fileCnt}
+                                                      , #{filePath1}
+                                                      , #{filePath2}
+                                                      , #{filePath3}
+                                                      , #{imageKey}
+                                                      , #{biztype}
+                                                      , #{externImgUrl}
+                                                      , #{flag}
+                                                      , #{uploadMessage}
+                                                      , #{usercode}
+                                                      , #{regtime}
+                                                      , #{expirytime}
+                                                      , NOW()
+                                                      , #{rgtrId}
+                                                      , NOW()
+                                                      , #{mdfrId}
+                                                     )
+    </insert>
+
+
+</mapper>
+

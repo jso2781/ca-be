@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- CONNECTTION_LOG 상세 테이블 MAPPER -->
+<mapper namespace="kr.or.kids.domain.ca.connecionlog.mapper.WorkAccessLogMapper">
+
+    <!--업무별 접속내역 목록조회 -->
+    <sql id="commonList">
+        SELECT
+                a.acsr_id,
+                a.cntn_log_sn,
+                a.inpt_dt,
+                a.inst_cd,
+                a.trgt_menu_nm,
+                a.qna,
+                a.url_addr,
+                a.task_se_cd_no,
+                a.cntn_dt,
+                a.acsr_nm,
+                a.rqstr_id,
+                a.task_se_cd,
+                a.flfmt_task_cd,
+                a.srvc_nm,
+                a.etc_memo,
+                a.prvc_incl_yn,
+                a.reg_dt,
+                a.rgtr_id
+        FROM kids_own.tb_ca_l_cntn_info_log a
+        WHERE 1=1
+        ORDER BY a.acsr_id DESC
+    </sql>
+
+
+    <!-- 기본 목록 조회 -->
+    <select id="list" resultType="WorkAccessLogDataResVO">
+        <include refid="commonList"></include>
+    </select>
+
+    <!-- 다음 업무 접속 로그 일련번호 -->
+    <select id="nextConnecttionDetailId" resultType="long">
+        SELECT nextval('kids_own.sq_ca_menu_utztn_sn')
+    </select>
+
+    <!-- 접속로그 상세(업무별접속내역) 단건 등록 -->
+    <insert id="insert" parameterType="WorkAccessLogInsertVO">
+        INSERT INTO kids_own.tb_ca_l_task_acs_hstry (
+                                             menu_utztn_sn
+											,sess_log_sn
+											,inpt_dt
+											,menu_id
+											,url_addr
+											,task_se_cd_no
+											,cntn_dt
+											,acsr_nm
+											,rqstr_id
+											,flfmt_task_cd
+											,etc_memo_cn
+											,prvc_incl_yn
+										    ,reg_dt
+											,rgtr_id
+											,mdfcn_dt
+											,mdfr_id
+                                        ) VALUES (
+											 #{menuUtztnSn}
+										    ,#{sessLogSn}
+											,Now()
+											,#{menuId}
+											,#{urlAddr}
+											,#{taskSeCdNo}
+											,Now()
+											,#{acsrNm}
+											,#{rgtrId}
+											,#{taskSeCd}
+											,#{etcMemoCn}
+											,'Y'
+											,Now()
+											,#{rgtrId}
+											,Now()
+											,#{mdfrId}
+                                     );
+    </insert>
+
+</mapper>

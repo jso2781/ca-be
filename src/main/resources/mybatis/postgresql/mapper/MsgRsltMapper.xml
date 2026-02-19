@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kids.domain.ca.msg.mapper.MsgRsltMapper">
+
+    <insert id="insertMsgRslt" parameterType="MsgRsltVO">
+        INSERT INTO public.tb_ca_i_msg_rslt  (
+                                                  SEQNO
+                                                , RSLT_CD
+                                                , RSLT_MSG
+                                                , REG_DT
+                                                , RGTR_ID
+                                               ) VALUES (
+                                                         #{seqno}
+                                                       , #{rsltCd}
+                                                       , #{rsltMsg}
+                                                       , NOW()
+                                                       , #{rgtrId}
+                                                        )
+    </insert>
+
+</mapper>

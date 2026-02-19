@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- FMK_IOT_TOKEN 테이블 MAPPER -->
+<mapper namespace="kr.or.kids.domain.ca.token.mapper.TokenMapper">
+
+	<!-- 기본 목록 조회 -->
+	<select id="list" resultType="TokenListResVO">
+		SELECT
+			   a.token_id
+			 , a.admin_id
+			 , a.user_id
+			 , a.app_id
+			 , a.refresh_token
+			 , a.access_token
+			 , a.in_admin_id
+			 , TO_CHAR(a.in_datetime, 'YYYY-MM-DD HH24:MI:SS')
+			 , a.up_admin_id
+			 , TO_CHAR(a.up_datetime, 'YYYY-MM-DD HH24:MI:SS')
+		FROM drugsafe_token a
+		WHERE 1=1
+		  AND a.del_yn = 'N'
+		ORDER BY a.token_id DESC
+	</select>
+
+	<!-- 기본조회 -->
+	<select id="data" parameterType="TokenUserIdReqVO" resultType="TokenDataResVO">
+		SELECT
+		       a.token_id
+			 , a.admin_id
+			 , a.user_id
+			 , a.app_id
+			 , a.refresh_token
+			 , a.access_token
+			 , a.in_admin_id
+			 , TO_CHAR(a.in_datetime, 'YYYY-MM-DD HH24:MI:SS')
+			 , a.up_admin_id
+			 , TO_CHAR(a.up_datetime, 'YYYY-MM-DD HH24:MI:SS')
+		FROM drugsafe_token a
+		WHERE 1=1
+		  AND a.admin_id = #{adminId}
+		  AND a.del_yn = 'N'
+	</select>
+
+	<!-- 기본 등록 -->
+	<insert id="insert" parameterType="TokenInsertReqVO">
+		INSERT INTO drugsafe_token (
+									token_id
+								  , admin_id
+								  , user_id
+								  , app_id
+								  , refresh_token
+								  , access_token
+								  , in_admin_id
+								  , in_datetime
+								  , up_admin_id
+								  , up_datetime
+						) VALUES (
+								   nextval('drugsafe_token_seq')
+								 , #{adminId}
+								 , #{userId}
+								 , #{appId}
+								 , #{refreshToken}
+								 , #{accessToken}
+								 , #{inAdminId}
+								 , now()
+								 , #{upAdminId}
+								 , now()
+								 )
+	</insert>
+
+	<!-- 기본 수정 (admin 기준) -->
+	<update id="adminUpdate" parameterType="TokenUserUpdateReqVO">
+		UPDATE drugsafe_token
+		SET  token_id      = COALESCE(#{tokenId}, token_id)
+		   , admin_id      = COALESCE(#{adminId}, admin_id)
+		   , user_id       = COALESCE(#{userId}, user_id)
+		   , app_id        = COALESCE(#{appId}, app_id)
+		   , refresh_token = COALESCE(#{refreshToken}, refresh_token)
+		   , access_token  = COALESCE(#{accessToken}, access_token)
+		   , up_admin_id   = COALESCE(#{upAdminId}, up_admin_id)
+		   , up_datetime   = now()
+		WHERE 1=1
+		  AND admin_id = #{adminId}
+	</update>
+
+	<!-- 기본 수정 (user 기준) -->
+	<update id="userUpdate" parameterType="TokenUserUpdateReqVO">
+		UPDATE drugsafe_token
+		SET  token_id      = COALESCE(#{tokenId}, token_id)
+		   , admin_id      = COALESCE(#{adminId}, admin_id)
+		   , user_id       = COALESCE(#{userId}, user_id)
+		   , app_id        = COALESCE(#{appId}, app_id)
+		   , refresh_token = COALESCE(#{refreshToken}, refresh_token)
+		   , access_token  = COALESCE(#{accessToken}, access_token)
+		   , up_admin_id   = COALESCE(#{upAdminId}, up_admin_id)
+		   , up_datetime   = now()
+		WHERE 1=1
+		  AND user_id = #{userId}
+	</update>
+
+	<!-- 기본 삭제 -->
+	<delete id="delete" parameterType="TokenDeleteReqVO">
+		DELETE FROM drugsafe_token
+		WHERE token_id = #{tokenId}
+	</delete>
+
+</mapper>

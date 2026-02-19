@@ -1,0 +1,94 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'kr.og.kids'
+version = '0.0.1-SNAPSHOT'
+description = 'DrugSafe User Project for Spring Boot'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+// 한글 인코딩 설정
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    // Web / Security / View
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+    // 추가
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // =========================================================================
+    // Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    // =========================================================================
+
+    // =========================================================================
+    // DB PostgreSql
+    // =========================================================================
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    runtimeOnly 'org.postgresql:postgresql'
+
+
+    // DriverSpy + jdbc:log4jdbc:* 지원 (log4jdbc-log4j2 계열)
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+    // MyBatis (Spring Boot 2.7.x 호환)
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.2'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.2'
+
+    // Swagger(OpenAPI 3.0) - Spring Boot 2.7.x 호환 (springdoc 1.8.x)
+    implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
+    implementation 'org.springdoc:springdoc-openapi-security:1.8.0'
+
+    // Apache POI for Excel processing
+    implementation 'org.apache.poi:poi:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+
+    // Any-ID (정부 통합인증) 중계형 SDK (AuthResourceRelay WEB-INF/lib)
+    //  - 본 프로젝트에서는 Gradle local libs(fileTree)로 포함
+    // 20260130 임시 주석
+     implementation fileTree(dir: 'libs', include: ['*.jar'])
+     implementation fileTree(dir: 'libs/oz', include: ['*.jar'])
+
+    // Dev
+    // developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // page helper
+    implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.7'
+
+
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+// 의존성 중복처리 - 260120 오현솔
+tasks.named('bootJar') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

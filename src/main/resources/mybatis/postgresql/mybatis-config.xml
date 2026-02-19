@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <settings>
+    <!-- 자동으로 카멜케이스 규칙으로 변환 -->
+    <!-- 카멜 케이스 VO 매핑 -->
+    <setting name="mapUnderscoreToCamelCase" value="true"/>
+    <!-- 쿼리 결과 필드가 null인 경우, 누락이 되서 나오지 않게 설정 -->
+    <setting name="callSettersOnNulls" value="true"/>
+    <!-- 쿼리에 보내는 파라미터가 null인 경우, 오류가 발생하는 것 방지 -->
+    <setting name="jdbcTypeForNull" value="NULL"/>
+ </settings>
+    <typeAliases>
+        <typeAlias alias="CamelHashMap" type="kr.or.kids.global.util.CamelHashMap"/>
+
+          <!-- User VO 클래스들 -->
+
+        <typeAlias alias="TokenDataResVO" type="kr.or.kids.domain.ca.token.vo.TokenDataResVO"/>
+        <typeAlias alias="TokenDeleteReqVO" type="kr.or.kids.domain.ca.token.vo.TokenDeleteReqVO"/>
+        <typeAlias alias="TokenInsertReqVO" type="kr.or.kids.domain.ca.token.vo.TokenInsertReqVO"/>
+        <typeAlias alias="TokenUserIdReqVO" type="kr.or.kids.domain.ca.token.vo.TokenUserIdReqVO"/>
+        <typeAlias alias="TokenListResVO" type="kr.or.kids.domain.ca.token.vo.TokenListResVO"/>
+        <typeAlias alias="TokenUserUpdateReqVO" type="kr.or.kids.domain.ca.token.vo.TokenUserUpdateReqVO"/>
+
+        <typeAlias alias="ConnectionLogInsertReqVO" type="kr.or.kids.domain.ca.connecionlog.vo.ConnectionLogInsertReqVO"/>
+        <typeAlias alias="ConnectionLogDataResVO" type="kr.or.kids.domain.ca.connecionlog.vo.ConnectionLogDataResVO"/>
+        <typeAlias alias="WorkAccessLogInsertVO" type="kr.or.kids.domain.ca.connecionlog.vo.WorkAccessLogInsertVO"/>
+        <typeAlias alias="WorkAccessLogDataResVO" type="kr.or.kids.domain.ca.connecionlog.vo.WorkAccessLogDataResVO"/>
+
+        <typeAlias alias="PersonalInfoAccessLogReqVO" type="kr.or.kids.domain.ca.connecionlog.vo.PersonalInfoAccessLogReqVO"/>
+        <typeAlias alias="PersonalInfoAccessLogResVO" type="kr.or.kids.domain.ca.connecionlog.vo.PersonalInfoAccessLogResVO"/>
+
+        <typeAlias alias="EmlSndngVO" type="kr.or.kids.domain.ca.mail.vo.EmlSndngVO"/>
+        <typeAlias alias="MsgSndngVO" type="kr.or.kids.domain.ca.msg.vo.MsgSndngVO"/>
+        <typeAlias alias="MsgRsltVO" type="kr.or.kids.domain.ca.msg.vo.MsgRsltVO"/>
+    </typeAliases>
+</configuration>

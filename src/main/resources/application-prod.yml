@@ -1,0 +1,99 @@
+server:
+  address: 0.0.0.0
+  port: 80
+  servlet:
+    context-path: /kids-ca
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  error:
+    include-message: never
+    include-exception: false
+    include-stacktrace: never
+    include-binding-errors: never
+    path: /error
+    whitelabel:
+      enabled: false
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 200KB
+      max-file-size: 150MB
+      max-request-size: 150MB
+  thymeleaf:
+    cache: false
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  jmx:
+    enabled: false
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:postgresql://127.0.0.1:5432/postgresql_db?tcpKeepAlive=true&connectTimeout=10&socketTimeout=600
+    username: postgresql_user
+    password: postgresql2024!$
+    hikari:
+      connection-timeout: 5000
+      validation-timeout: 1000
+      maximum-pool-size: 30
+      minimum-idle: 5
+      connection-test-query: SELECT 1
+  path:
+    fileUploadDir: /inusquare/upload
+    urlFilePath: /
+    evdnDocFileUploadDir: /resources/doc
+  web:
+    resources:
+      add-mappings: true
+  mail:
+    host: email-smtp.ap-northeast-2.amazonaws.com
+    port: 587
+    username: your_email@gmail.com
+    password: your_app_password   # Gmail 앱 비밀번호
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+springdoc:
+  swagger-ui:
+#    doc-expansion: full           # API 목록 접힘 (선택)
+    default-model-expand-depth: 5
+    default-models-expand-depth: 5
+
+logging:
+  level:
+    kr.or.kids: INFO
+    jdbc.sqltiming: INFO
+    jdbc.resultsettable: INFO
+
+mybatis:
+  type-aliases-package: kr.go.kids
+  mapper-locations: mybatis/postgresql/mapper/**/*.xml
+  configuration:
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    use-column-label: true
+    auto-mapping-behavior: partial
+    auto-mapping-unknown-column-behavior: WARNING
+    default-executor-type: simple
+    default-statement-timeout: 30
+    default-fetch-size: 100
+    safe-row-bounds-enabled: false
+    map-underscore-to-camel-case: true
+    local-cache-scope: session
+    jdbc-type-for-null: NULL
+    variables:
+      db_encrypt_key: "123456789"

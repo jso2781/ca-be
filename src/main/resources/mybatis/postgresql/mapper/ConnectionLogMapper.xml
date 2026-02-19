@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- CONNECTTION_LOG 테이블 MAPPER -->
+<mapper namespace="kr.or.kids.domain.ca.connecionlog.mapper.ConnectionLogMapper">
+
+    <!-- 목록조회 -->
+    <sql id="commonList">
+        SELECT
+                a.sess_log_sn,
+                a.lgn_se_cd ,
+                a.srvc_user_id ,
+                a.rqstr_ip_addr,
+                a.cntn_se_no,
+                a.cntn_ocrn_dt,
+                a.cntn_dtl_expln,
+                a.cert_token_vl,
+                a.token_crt_hr ,
+                a.sess_expry_prnmnt_hr,
+                a.lgt_dt,
+                a.reg_dt ,
+                a.rgtr_id ,
+                a.mdfcn_dt ,
+                a.mdfr_id
+        FROM
+            kids_own.tb_ca_l_sesn_log_info_mng a
+        WHERE 1=1
+        ORDER BY a.acsr_id DESC
+    </sql>
+
+    <!-- 기본 목록 조회 -->
+    <select id="list" resultType="ConnectionLogDataResVO">
+        <include refid="commonList"></include>
+    </select>
+
+    <!-- 마지막 일련 번호 조회 -->
+    <select id="getLastId"  resultType="long">
+        select COALESCE(MAX(sess_log_sn),0)
+        FROM  kids_own.tb_ca_l_sesn_log_info_mng
+       <!-- WHERE  cntn_se_no = '1' -->
+    </select>
+
+    <!-- 다음 파일 일련번호 -->
+    <select id="nextConnectionLogReq" resultType="long">
+        SELECT nextval('kids_own.sq_ca_cntn_log_sn')
+    </select>
+
+    <!-- 접속로그(로그인/로그아웃) 단건 등록 -->
+    <insert id="insert" parameterType="ConnectionLogInsertReqVO">
+        INSERT INTO kids_own.tb_ca_l_sesn_log_info_mng (
+                                                        sess_log_sn,
+                                                        net_se_cd,
+                                                        lgn_se_cd ,
+                                                        srvc_user_id ,
+                                                        rqstr_ip_addr,
+                                                        cntn_se_no,
+                                                        cntn_ocrn_dt,
+                                                        cntn_dtl_expln,
+                                                        cert_token_vl,
+                                                        token_crt_hr ,
+                                                        task_se_cd,
+                                                        sess_expry_prnmnt_hr,
+                                                        lgt_dt,
+                                                        reg_dt ,
+                                                        rgtr_id ,
+                                                        mdfcn_dt ,
+                                                        mdfr_id
+                                                    ) VALUES (
+                                                        #{sessLogSn}
+                                                       ,#{netSeCd}
+                                                       ,#{lgnSeCd}
+                                                       ,#{srvcUserId}
+                                                       ,#{rqstrIpAddr}
+                                                       ,#{cntnSeNo}
+                                                       ,#{cntnOcrnDt}
+                                                       ,#{cntnDtlExpln}
+                                                       ,#{certTokenVl}
+                                                       ,#{tokenCrtHr}
+                                                       ,#{taskSeCd}
+                                                       ,#{sessExpryPrnmntHr}
+                                                       ,NOW()
+                                                       ,NOW()
+                                                       ,#{rgtrId}
+                                                       ,NOW()
+                                                       ,#{mdfrId}
+                                                      )
+    </insert>
+
+</mapper>

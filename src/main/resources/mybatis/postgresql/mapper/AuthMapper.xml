@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 인증 관련 MAPPER -->
+<mapper namespace="kr.or.kids.domain.ca.auth.mapper.AuthMapper">
+
+    <!-- 로그인 데이터 조회 -->
+<!--    <select id="loginData" parameterType="UserLoginReqVO" resultType="UserLoginResVO">-->
+<!--        SELECT-->
+<!--            user_id,-->
+<!--            user_login_id,-->
+<!--            user_pw,-->
+<!--            user_name,-->
+<!--            user_email,-->
+<!--            del_yn-->
+<!--        FROM drugsafe_user-->
+<!--        WHERE 1=1-->
+<!--          AND user_login_id = #{userLoginId}-->
+<!--          AND del_yn = 'N'-->
+<!--    </select>-->
+
+</mapper>

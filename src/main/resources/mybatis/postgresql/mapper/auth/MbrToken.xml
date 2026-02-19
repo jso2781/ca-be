@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.kids.domain.ca.auth.mapper.MbrTokenMapper">
+
+    <select id="nextMbrTokenSn" resultType="long">
+        SELECT nextval('kids_own.sq_ca_token_sn')
+    </select>
+
+    <select id="getMbrToken" parameterType="MbrTokenPVO" resultType="MbrTokenRVO" >
+        /* 대국민포털_회원_TOKEN 조회 (MbrTokenMapper.getMbrToken) */
+
+        SELECT
+                 token_sn
+                ,mbr_id
+                ,prgrm_id
+                ,updt_token_cn
+                ,acs_token_cn
+                ,reg_dt
+                ,rgtr_id
+                ,mdfcn_dt
+                ,mdfr_id
+        FROM kids_own.tb_ca_m_mbr_token
+        WHERE 1=1
+          AND token_sn = #{tokenSn}
+    </select>
+
+    <insert id="insertMbrToken" parameterType="MbrTokenPVO">
+        /* 대국민포털_회원_TOKEN 입력 (MbrTokenMapper.insertMbrToken) */
+        INSERT INTO kids_own.tb_ca_m_mbr_token
+                                                (
+                                                token_sn
+                                                ,mbr_id
+                                                ,prgrm_id
+                                                ,updt_token_cn
+                                                ,acs_token_cn
+                                                ,reg_dt
+                                                ,rgtr_id
+                                                ,mdfcn_dt
+                                                ,mdfr_id
+                                                )VALUES(
+                                                 #{tokenSn}
+                                                ,#{mbrId}
+                                                ,#{prgrmId}
+                                                ,#{updtTokenCn}
+                                                ,#{acsTokenCn}
+                                                ,now()
+                                                ,#{rgtrId}
+                                                ,now()
+                                                ,#{mdfrId}
+                                                )
+    </insert>
+
+    <update id="updateMbrToken" parameterType="MbrTokenPVO">
+        /* 대국민포털_회원_TOKEN 수정 (MbrTokenMapper.updateMbrToken) */
+        UPDATE kids_own.tb_ca_m_mbr_token
+        SET
+          prgrm_id = coalesce(#{prgrmId}, prgrm_id)
+          ,updt_token_cn = coalesce(#{updtTokenCn}, updt_token_cn)
+          ,acs_token_cn = coalesce(#{acsTokenCn}, acs_token_cn)
+          ,mdfr_id = coalesce(#{mdfrId}, mdfr_id)
+          ,mdfcn_dt = now()
+        WHERE 1=1
+          AND token_sn = #{tokenSn}
+    </update>
+
+    <insert id="saveMbrToken" parameterType="MbrTokenPVO">
+        /* 대국민포털_회원_TOKEN 저장 (MbrTokenMapper.insertMbrToken) */
+        INSERT INTO kids_own.tb_ca_m_mbr_token
+         (
+             token_sn
+            ,mbr_id
+            ,prgrm_id
+            ,updt_token_cn
+            ,acs_token_cn
+            ,reg_dt
+            ,rgtr_id
+            ,mdfcn_dt
+            ,mdfr_id
+        ) VALUES (
+            #{tokenSn}
+            ,#{mbrId}
+            ,#{prgrmId}
+            ,#{updtTokenCn}
+            ,#{acsTokenCn}
+            ,#{rgtrId}
+            ,now()
+            ,#{regPrgrmId}
+            ,#{mdfrId}
+            ,now()
+            )
+            ON CONFLICT(token_sn)
+        DO UPDATE SET
+            mbr_id = coalesce(excluded.mbr_id, kids_own.tb_pp_m_mbr_token.mbr_id)
+                           ,prgrm_id = coalesce(excluded.prgrmId, kids_own.tb_ca_m_mbr_token.prgrm_id)
+                           ,updt_token_cn = coalesce(excluded.updt_token_cn, kids_own.tb_pp_m_mbr_token.updt_token_cn)
+                           ,acs_token_cn = coalesce(excluded.acs_token_cn, kids_own.tb_pp_m_mbr_token.acs_token_cn)
+                           ,mdfr_id = coalesce(excluded.mdfr_id, kids_own.tb_pp_m_mbr_token.mdfr_id)
+                           ,mdfcn_dt = now()
+
+    </insert>
+
+    <delete id="deleteMbrToken" parameterType="MbrTokenDVO">
+        /* 대국민포털_회원_TOKEN 삭제 (MbrTokenMapper.deleteMbrToken) */
+        DELETE FROM kids_own.tb_ca_m_mbr_token
+        WHERE 1=1
+          AND token_sn = #{tokenSn}
+          AND mbr_id = #{mbrId}
+    </delete>
+
+</mapper>
