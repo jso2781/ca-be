@@ -9,9 +9,9 @@ import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
 public class MbrTokenDVO
 {
     /**
-     * JWT토큰ID
+     * JWT토큰일련번호
      */
-    @Schema(requiredMode = RequiredMode.REQUIRED, description = "JWT토큰ID", type = "BigInteger")
+    @Schema(requiredMode = RequiredMode.REQUIRED, description = "JWT토큰일련번호", type = "BigInteger")
     private BigInteger tokenSn;
 
     /**

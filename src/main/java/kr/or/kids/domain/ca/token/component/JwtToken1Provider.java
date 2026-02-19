@@ -26,21 +26,21 @@ public class JwtToken1Provider {
 
     /**
      * <PRE>
-     * AccessToken 생성
+     * AcsTokenCn 생성
      * </PRE>
      * @param userId
      * @param expTime(밀리초)
      * @param SECRET_KEY
      * @return
      */
-    public String createAccessToken(String appId, String userId, Long expTime) {
+    public String createAcsTokenCn(String prgrmId, String userId, Long expTime) {
         if (expTime < 0L) throw new RuntimeException("만료시간은0보다 커야합니다.");
 
         Date expireTime = new Date(System.currentTimeMillis() + expTime);
         // 토큰생성에필요한데이터설정으로토큰생성
         return Jwts.builder()
                 .setSubject(userId)                                // userId & 토큰생성주체지정
-                .setIssuer(appId)
+                .setIssuer(prgrmId)
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)    // key, key 암호화알고리즘설정
                 .setExpiration(expireTime)       // 만료 시간 설정& compact to String
@@ -49,12 +49,12 @@ public class JwtToken1Provider {
 
     /**
      * <PRE>
-     * RefreshToken 생성
+     * UpdtTokenCn 생성
      * </PRE>
      * @param expTime(밀리초)
      * @return
      */
-    public String createRefreshToken(Long expTime) {
+    public String createUpdtTokenCn(Long expTime) {
         if (expTime < 0L) throw new RuntimeException("만료시간은0보다 커야합니다.");
 
         Date expireTime = new Date(System.currentTimeMillis() + expTime);
@@ -70,7 +70,7 @@ public class JwtToken1Provider {
 
     /**
      * JWT 토큰문자열에서토큰데이터를가져오는메소드
-     * @param accessToken
+     * @param acsTokenCn
      * @return
      */
     public Claims getClaims(String token){
@@ -118,14 +118,14 @@ public class JwtToken1Provider {
 
     /**
      * 토큰 파싱
-     * @param accessToken
+     * @param acsTokenCn
      * @return
      */
-    private Claims parseClaims(String accessToken) {
+    private Claims parseClaims(String acsTokenCn) {
         try {
             return Jwts.parser()
                     .setSigningKey(SECRET_KEY)
-                    .parseClaimsJws(accessToken)
+                    .parseClaimsJws(acsTokenCn)
                     .getBody();
         } catch (ExpiredJwtException e) {
             return e.getClaims();

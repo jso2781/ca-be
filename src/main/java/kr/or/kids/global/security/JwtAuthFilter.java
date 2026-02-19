@@ -43,18 +43,18 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     return;
                 }
 
-                // 2) ✅ tokenId Claim 추출
-                String tokenId = jwtTokenProvider.getTokenId(token);
+                // 2) ✅ tokenSn Claim 추출
+                String tokenSn = jwtTokenProvider.getTokenSn(token);
 
                 // 3) ✅ idle 만료 체크: key 없으면(30분 idle) 408 (request idle)
-                if (!idleTokenService.exists(tokenId)) {
+                if (!idleTokenService.exists(tokenSn)) {
                     SecurityContextHolder.clearContext();
                     response.setStatus(HttpServletResponse.SC_REQUEST_TIMEOUT);
                     return;
                 }
 
                 // 4) ✅ 활동 감지: TTL 30분으로 리셋
-                idleTokenService.touch(tokenId);
+                idleTokenService.touch(tokenSn);
 
                 // 5) JWT 로그인 인증 처리, JWT 토큰 문자열에서 회원ID(mbrId) 가져옴.
                 String mbrId = jwtTokenProvider.getSubject(token);

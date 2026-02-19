@@ -150,17 +150,17 @@ public class AuthServiceImpl implements AuthService
                     MbrTokenRVO mtr = mbrTokenMapper.getMbrToken(loginVO);
 
                     if(mtr == null){
-                        long newTokenId = mbrTokenMapper.nextMbrTokenSn();
-                        tokenSn = BigInteger.valueOf(newTokenId);
+                        long newTokenSn = mbrTokenMapper.nextMbrTokenSn();
+                        tokenSn = BigInteger.valueOf(newTokenSn);
                     }else{
                         tokenSn = mtr.getTokenSn();
                     }
 
                     // Refresh Token 생성(Access Token, Refresh Token)
-                    String refreshToken = jwtTokenProvider.createRefreshToken(ISSUER, mbrId, REFRESH_TOKEN_EXPIRE_TIME);
+                    String updtTokenCn = jwtTokenProvider.createUpdtTokenCn(ISSUER, mbrId, REFRESH_TOKEN_EXPIRE_TIME);
 
-                    // ✅ accessToken은 tokenId/appId claim 포함해서 생성
-                    String accessToken  = jwtTokenProvider.createAccessToken(ISSUER, mbrId, ACCESS_TOKEN_EXPIRE_TIME, tokenSn.toString(), ISSUER);
+                    // ✅ acsTokenCn은 tokenSn/prgrmId claim 포함해서 생성
+                    String acsTokenCn  = jwtTokenProvider.createAcsTokenCn(ISSUER, mbrId, ACCESS_TOKEN_EXPIRE_TIME, tokenSn.toString(), ISSUER);
 
                     if(mtr == null){
 
@@ -168,23 +168,23 @@ public class AuthServiceImpl implements AuthService
                         tokenInsertVO.setTokenSn(tokenSn);
                         tokenInsertVO.setPrgrmId(ISSUER);
                         tokenInsertVO.setMbrId(mbrId);
-                        tokenInsertVO.setUpdtTokenCn(refreshToken);
-                        tokenInsertVO.setAcsTokenCn(accessToken);
+                        tokenInsertVO.setUpdtTokenCn(updtTokenCn);
+                        tokenInsertVO.setAcsTokenCn(acsTokenCn);
                         tokenInsertVO.setRgtrId(mbrId);
                         tokenInsertVO.setMdfrId(mbrId);
                         mbrTokenMapper.insertMbrToken(tokenInsertVO);
                         userInfo.setTokenSn(tokenSn);
-                        userInfo.setAcsTokenCn(accessToken);
-                        userInfo.setUpdtTokenCn(refreshToken);
+                        userInfo.setAcsTokenCn(acsTokenCn);
+                        userInfo.setUpdtTokenCn(updtTokenCn);
                         userInfo.setPrgrmId(ISSUER);
                         userInfo.setPswdErrNmtm(0);             // 로그인 성공했으므로 기존 로그인 실패 횟수를 0으로 초기화
 
                         log.info("############# userInfo::::::::::::" + userInfo);
 
-                        // UI 에 전달한 사용자 정보(userInfo), 토큰 정보(tokenId, accessToken, refreshToken)
+                        // UI 에 전달한 사용자 정보(userInfo), 토큰 정보(tokenSn, acsTokenCn, updtTokenCn)
                         bizData.put("tokenSn", tokenSn);
-                        bizData.put("accessToken", accessToken);
-                        bizData.put("refreshToken", refreshToken);
+                        bizData.put("acsTokenCn", acsTokenCn);
+                        bizData.put("updtTokenCn", updtTokenCn);
                         bizData.put("pswdErrNmtm", 0);
                         bizData.put("userInfo", userInfo);
                     }
@@ -194,31 +194,30 @@ public class AuthServiceImpl implements AuthService
                         tokenUpdateVO.setTokenSn(tokenSn);
                         tokenUpdateVO.setPrgrmId(ISSUER);
                         tokenUpdateVO.setMbrId(mbrId);
-                        tokenUpdateVO.setUpdtTokenCn(refreshToken);
-                        tokenUpdateVO.setAcsTokenCn(accessToken);
+                        tokenUpdateVO.setUpdtTokenCn(updtTokenCn);
+                        tokenUpdateVO.setAcsTokenCn(acsTokenCn);
                         tokenUpdateVO.setMdfrId(mbrId);
 
                         mbrTokenMapper.updateMbrToken(tokenUpdateVO);
 
                         userInfo.setTokenSn(tokenSn);
-                        userInfo.setAcsTokenCn(accessToken);
-                        userInfo.setUpdtTokenCn(refreshToken);
+                        userInfo.setAcsTokenCn(acsTokenCn);
+                        userInfo.setUpdtTokenCn(updtTokenCn);
                         userInfo.setPswdErrNmtm(0);             // 로그인 성공했으므로 기존 로그인 실패 횟수를 0으로 초기화
                         userInfo.setPrgrmId(ISSUER);
 
-                        // UI 에 전달한 사용자 정보(userInfo), 토큰 정보(tokenSn, accessToken, refreshToken)
-                        bizData.put("tokenId", tokenSn);
-                        bizData.put("accessToken", accessToken);
-                        bizData.put("refreshToken", refreshToken);
+                        // UI 에 전달한 사용자 정보(userInfo), 토큰 정보(tokenSn, acsTokenCn, updtTokenCn)
+                        bizData.put("tokenSn", tokenSn);
+                        bizData.put("acsTokenCn", acsTokenCn);
+                        bizData.put("updtTokenCn", updtTokenCn);
                         bizData.put("pswdErrNmtm", 0);
                         bizData.put("userInfo", userInfo);
                     }
 
-                    // 로그인 성공하변 회원정보기본에서 인증토큰(accessToken), 로그인 실패 횟수=0 지정
-//                    mp.setCertToken(accessToken); // accessToken 입력시 character varying(40) 자료형에 너무 긴 자료를 담으려고 합니다.
+                    // 로그인 성공하변 회원정보기본에서 인증토큰(acsTokenCn), 로그인 실패 횟수=0 지정
+//                    mp.setCertToken(acsTokenCn); // acsTokenCn 입력시 character varying(40) 자료형에 너무 긴 자료를 담으려고 합니다.
                     mp.setPswdErrNmtm(0);
                     mp.setMdfrId(mbrId);
-                    mp.setEncptMbrPswd("AuthService.login");
 
                     mbrInfoMapper.updateMbrInfo(mp);
 
@@ -243,30 +242,30 @@ public class AuthServiceImpl implements AuthService
         return apiPrnDto;
     }
 
-    public ApiPrnDto refresh(BigInteger tokenSn, String refreshToken) {
+    public ApiPrnDto refresh(BigInteger tokenSn, String updtTokenCn) {
         ApiPrnDto apiPrnDto = new ApiPrnDto(ApiResultCode.SUCCESS);
 
         // JWT 토큰 문자열에서 회원ID(mbrId) 가져옴.
-        String mbrId = jwtTokenProvider.getSubject(refreshToken);
+        String mbrId = jwtTokenProvider.getSubject(updtTokenCn);
 
         MbrTokenPVO mbrTokenPVO = new MbrTokenPVO();
         mbrTokenPVO.setTokenSn(tokenSn);
 
         MbrTokenRVO mbrToken = mbrTokenMapper.getMbrToken(mbrTokenPVO);
         if(mbrToken == null)throw new RuntimeException("TOKEN_NOT_FOUND");
-        if(!refreshToken.equals(mbrToken.getUpdtTokenCn()))throw new RuntimeException("TOKEN_MISMATCH");
+        if(!updtTokenCn.equals(mbrToken.getUpdtTokenCn()))throw new RuntimeException("TOKEN_MISMATCH");
 
-        String newRefreshToken = jwtTokenProvider.createRefreshToken(ISSUER, mbrId, REFRESH_TOKEN_EXPIRE_TIME);
-        String newAccessToken = jwtTokenProvider.createAccessToken(ISSUER, mbrId, ACCESS_TOKEN_EXPIRE_TIME, tokenSn.toString(), ISSUER);
+        String newUpdtTokenCn = jwtTokenProvider.createUpdtTokenCn(ISSUER, mbrId, REFRESH_TOKEN_EXPIRE_TIME);
+        String newAcsTokenCn = jwtTokenProvider.createAcsTokenCn(ISSUER, mbrId, ACCESS_TOKEN_EXPIRE_TIME, tokenSn.toString(), ISSUER);
 
-        log.info("newAccessToken:::::::::::" + newAccessToken);
+        log.info("newAcsTokenCn:::::::::::" + newAcsTokenCn);
 
         MbrTokenPVO tokenInsertVO = new MbrTokenPVO();
         tokenInsertVO.setTokenSn(tokenSn);
         tokenInsertVO.setPrgrmId(ISSUER);
         tokenInsertVO.setMbrId(mbrId);
-        tokenInsertVO.setUpdtTokenCn(newRefreshToken);
-        tokenInsertVO.setAcsTokenCn(newAccessToken);
+        tokenInsertVO.setUpdtTokenCn(newUpdtTokenCn);
+        tokenInsertVO.setAcsTokenCn(newAcsTokenCn);
         tokenInsertVO.setMdfrId(mbrId);
 
         // DB에 기존 JWT 토큰 정보 업데이트
@@ -288,8 +287,8 @@ public class AuthServiceImpl implements AuthService
 
         HashMap<String, Object> bizData = new HashMap<>();
         bizData.put("tokenSn", tokenSn);
-        bizData.put("accessToken", newAccessToken);
-        bizData.put("refreshToken", newRefreshToken);
+        bizData.put("acsTokenCn", newAcsTokenCn);
+        bizData.put("updtTokenCn", newUpdtTokenCn);
         bizData.put("pswdErrNmtm", 0);
         bizData.put("userInfo", userInfo);
 
@@ -302,7 +301,7 @@ public class AuthServiceImpl implements AuthService
      * 로그아웃 처리
      */
     public ApiPrnDto logout(MbrTokenDVO mbrTokenDVO, String authorizationHeader){
-        // 1) DB에서 refresh/access 정보 삭제(token_id + mbr_id 조건)
+        // 1) DB에서 refresh/access 정보 삭제(token_sn + mbr_id 조건)
         mbrTokenMapper.deleteMbrToken(mbrTokenDVO);
 
         // Request Header의 Authorization 항목의 값에서 token 부분만 추출
@@ -342,19 +341,19 @@ public class AuthServiceImpl implements AuthService
             return new ApiPrnDto(ApiResultCode.UNAUTHORIZED);
         }
 
-        // AccessToken에서 tokenId claim 추출
-        String tokenId = jwtTokenProvider.getTokenId(token);
-        if (tokenId == null || tokenId.isBlank()) {
+        // AcsTokenCn에서 tokenSn claim 추출
+        String tokenSn = jwtTokenProvider.getTokenSn(token);
+        if (tokenSn == null || tokenSn.isBlank()) {
             return new ApiPrnDto(ApiResultCode.UNAUTHORIZED);
         }
 
         // Redis Idle 키가 이미 없으면(30분 idle 만료) 연장 불가 → 401 처리 권장
-        if (!idleTokenService.exists(tokenId)) {
+        if (!idleTokenService.exists(tokenSn)) {
             return new ApiPrnDto(ApiResultCode.UNAUTHORIZED);
         }
 
         // Redis Idle TTL 30분 리셋 (토큰 재발급 없음)
-        idleTokenService.touch(tokenId);
+        idleTokenService.touch(tokenSn);
 
         return new ApiPrnDto(ApiResultCode.SUCCESS);
     }

@@ -19,7 +19,7 @@ public interface AuthService
      * 토큰 갱신
      * @return API 응답 DTO
      */
-    public ApiPrnDto refresh(BigInteger tokenId, String refreshToken);
+    public ApiPrnDto refresh(BigInteger tokenSn, String updtTokenCn);
 
     /**
      * 토큰 삭제(로그아웃시)

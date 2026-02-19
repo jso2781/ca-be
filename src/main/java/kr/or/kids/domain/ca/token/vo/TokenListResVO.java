@@ -7,12 +7,12 @@ import lombok.Data;
  */
 @Data
 public class TokenListResVO {
-    private String tokenId;          // 토큰 ID
+    private String tokenSn;          // 토큰 ID
     private Integer adminId;         // 관리자 번호
     private Integer userId;          // 사용자번호
-    private String appId;            // 앱ID
-    private String refreshToken;     // 리프레시 토큰
-    private String accessToken;      // 액세스토큰
+    private String prgrmId;            // 앱ID
+    private String updtTokenCn;     // 갱신토큰내용
+    private String acsTokenCn;      // 접근토큰내용
     private Integer inAdminId;       // 등록 관리자 번호
     private String inDatetime;       // 등록 시간
     private Integer upAdminId;       // 수정 관리자 번호

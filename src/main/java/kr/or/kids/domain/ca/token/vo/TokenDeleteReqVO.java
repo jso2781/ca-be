@@ -7,5 +7,5 @@ import lombok.Data;
  */
 @Data
 public class TokenDeleteReqVO {
-    private String tokenId;         // 토큰 ID
+    private String tokenSn;         // 토큰 ID
 }

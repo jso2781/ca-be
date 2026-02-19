@@ -10,8 +10,8 @@ import kr.or.kids.domain.ca.auth.vo.MbrTokenRVO;
 public interface MbrTokenMapper
 {
     /**
-     *  대국민포털_회원_TOKEN token_id 발번
-     * @return 발번된 token_id
+     *  대국민포털_회원_TOKEN token_sn 발번
+     * @return 발번된 token_sn
      */
     public long nextMbrTokenSn();
 

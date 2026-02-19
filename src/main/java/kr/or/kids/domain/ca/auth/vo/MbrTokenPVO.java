@@ -8,9 +8,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class MbrTokenPVO
 {
     /**
-     * JWT토큰ID
+     * JWT토큰일련번호
      */
-    @Schema(description = "JWT토큰ID", type = "BigInteger")
+    @Schema(description = "JWT토큰일련번호", type = "BigInteger")
     private BigInteger tokenSn;
 
     /**

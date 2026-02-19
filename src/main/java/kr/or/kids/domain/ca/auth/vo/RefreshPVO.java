@@ -8,29 +8,29 @@ import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
 @Schema(name = "JWT Token Refresh 요청", description = "JWT Token Refresh 요청 Parameter VO")
 public class RefreshPVO {
     /**
-     * JWT토큰ID
+     * JWT토큰일련번호
      */
-    @Schema(requiredMode = RequiredMode.REQUIRED, description = "JWT토큰ID", type = "BigInteger")
-    private BigInteger tokenId;
+    @Schema(requiredMode = RequiredMode.REQUIRED, description = "JWT토큰일련번호", type = "BigInteger")
+    private BigInteger tokenSn;
 
     /**
      * JWT_Refresh_Token
      */
     @Schema(description = "JWT_Refresh_Token", type = "String")
-    private String refreshToken;
+    private String updtTokenCn;
 
-    public BigInteger getTokenId()
+    public BigInteger getTokenSn()
     {
-        return tokenId;
+        return tokenSn;
     }
-    public void setTokenId(BigInteger tokenId)
+    public void setTokenSn(BigInteger tokenSn)
     {
-        this.tokenId = tokenId;
+        this.tokenSn = tokenSn;
     }
-    public String getRefreshToken() {
-        return refreshToken;
+    public String getUpdtTokenCn() {
+        return updtTokenCn;
     }
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
+    public void setUpdtTokenCn(String updtTokenCn) {
+        this.updtTokenCn = updtTokenCn;
     }
 }
