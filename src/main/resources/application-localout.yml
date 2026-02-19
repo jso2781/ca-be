@@ -18,9 +18,9 @@ server:
 
 spring:
   redis:
-    host: 192.168.2.149
-    port: 30901
-    password: kids2025!
+    host: 127.0.0.1
+    port: 6379
+    password: drugsafe123456
     timeout: 2000ms
   servlet:
     multipart:
