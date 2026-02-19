@@ -133,7 +133,6 @@ public class AuthServiceImpl implements AuthService
                     // 로그인 성공하변 회원정보기본에서 로그인 실패 횟수 + 1 증가
                     mp.setPswdErrNmtm(pswdErrNmtm);
                     mp.setMdfrId(mbrId);
-                    mp.setEncptMbrPswd("AuthService.login");
 
                     mbrInfoMapper.updateMbrInfo(mp);
 
@@ -172,9 +171,7 @@ public class AuthServiceImpl implements AuthService
                         tokenInsertVO.setUpdtTokenCn(refreshToken);
                         tokenInsertVO.setAcsTokenCn(accessToken);
                         tokenInsertVO.setRgtrId(mbrId);
-                        tokenInsertVO.setRegPrgrmId("AuthService.login");
                         tokenInsertVO.setMdfrId(mbrId);
-                        tokenInsertVO.setMdfcnPrgrmId("AuthService.login");
                         mbrTokenMapper.insertMbrToken(tokenInsertVO);
                         userInfo.setTokenSn(tokenSn);
                         userInfo.setAcsTokenCn(accessToken);
@@ -200,7 +197,6 @@ public class AuthServiceImpl implements AuthService
                         tokenUpdateVO.setUpdtTokenCn(refreshToken);
                         tokenUpdateVO.setAcsTokenCn(accessToken);
                         tokenUpdateVO.setMdfrId(mbrId);
-                        tokenUpdateVO.setMdfcnPrgrmId("AuthService.login");
 
                         mbrTokenMapper.updateMbrToken(tokenUpdateVO);
 
@@ -272,7 +268,6 @@ public class AuthServiceImpl implements AuthService
         tokenInsertVO.setUpdtTokenCn(newRefreshToken);
         tokenInsertVO.setAcsTokenCn(newAccessToken);
         tokenInsertVO.setMdfrId(mbrId);
-        tokenInsertVO.setMdfcnPrgrmId("AuthService.refresh");
 
         // DB에 기존 JWT 토큰 정보 업데이트
         mbrTokenMapper.updateMbrToken(tokenInsertVO);
