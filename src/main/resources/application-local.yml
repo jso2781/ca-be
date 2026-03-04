@@ -65,7 +65,7 @@ spring:
 
     protocol: smtp
     default-encoding: UTF-8
-    test-mode: true
+    test-mode: false
     properties:
       mail:
         smtp:
@@ -76,15 +76,17 @@ spring:
           timeout: 5000
           writetimeout: 5000
           debug: true  # 추가 (XML과 일치)
-surem:
-  base-url: https://api.surem.com
-  user-code: YOUR_USER_CODE
-  secret-key: YOUR_SECRET_KEY
+  surem:
+    baseUrl: https://api.surem.com
+    rcsUrl: https://rcs-api.surem.com
+    userCode: kidsadmin
+    secretKey: 3ywmxkmudrzijcnvktc07viz2uhr47517380807q
+    testMode: true
 
-address:
-  openapi:
-    url: https://business.juso.go.kr/addrink/addrLinkUrl.do
-    key: devU01TX0FVVEgyMDI2MDEwOTEzMDY1ODExNzQwOTQ=
+  address:
+    openapi:
+      url: https://business.juso.go.kr/addrink/addrLinkUrl.do
+      key: devU01TX0FVVEgyMDI2MDEwOTEzMDY1ODExNzQwOTQ=
 
 springdoc:
   swagger-ui:

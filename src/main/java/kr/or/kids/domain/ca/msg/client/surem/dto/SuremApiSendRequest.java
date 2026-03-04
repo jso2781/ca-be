@@ -1,40 +1,46 @@
 package kr.or.kids.domain.ca.msg.client.surem.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
-/**
- * Surem 메시지 발송 요청 DTO
- */
 @Data
+@Builder
 public class SuremApiSendRequest {
 
-    /** 사용자 코드 */
-    private String usercode;
-
-    /** 업무 타입 */
-    private String biztype;
-
-    /** 요청자명 */
-    private String reqname;
-
-    /** 요청자 전화번호 */
-    private String reqphone;
-
-    /** 발신자명 */
-    private String callname;
-
-    /** 발신자 전화번호 */
-    private String callphone;
-
-    /** 제목 (LMS/MMS) */
+    // ========== 공통 ==========
+    private String to;
+    private String text;
+    private String reqPhone;
     private String subject;
+    private String reservedTime;
+    private Integer messageId;
+    private String imageKey;
+    private String origCode;
 
-    /** 메시지 본문 */
-    private String msg;
+    // ========== 국제문자 ==========
+    private String country;
 
-    /** 발송 구분 (SMS, LMS, KAKAO, RCS 등) */
-    private String kind;
+    // ========== 카카오 ==========
+    private String bizType;
+    private String senderKey;
+    private String templateCode;
+    private String templateTitle;
+    private String reSend;
+    private String reSubject;
+    private String reText;
+    private Object attachment;
+    private Object supplement;
+    private String header;
+    private Object carousel;
 
-    /** 예약 발송 시간 (yyyyMMddHHmmss) */
-    private String sendtime;
+    // ========== RCS ==========
+    private String serviceType;
+    private String brandKey;
+    private String chatbotId;
+    private String phone;
+    private String messagebaseId;
+    private Object body;
+    private Object buttons;
+    private String footer;
+    private Boolean copyAllowed;
 }

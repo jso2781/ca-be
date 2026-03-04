@@ -1,13 +1,14 @@
 package kr.or.kids.domain.ca.adr.service;
 
-public interface AdressCntcService {
+import kr.or.kids.domain.ca.adr.vo.JusoResponseVO;
 
+public interface AdressCntcService {
     /**
-     * 도로명주소 Open API 기반 주소 목록 조회
-     *
-     * @param pageNum  페이지 번호
-     * @param pageSize 페이지 사이즈
-     * @return ApiPrnDto
+     * 주소 검색 (JSON 방식)
+     * @param keyword      검색 키워드
+     * @param currentPage  현재 페이지
+     * @param countPerPage 페이지당 건수
+     * @return JusoResponseVO (JSON 응답)
      */
-    String search(String keyword, int pageNum, int pageSize);
+    JusoResponseVO search(String keyword, int currentPage, int countPerPage) throws Exception;
 }

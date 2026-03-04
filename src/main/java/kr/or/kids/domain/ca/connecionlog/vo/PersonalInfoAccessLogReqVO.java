@@ -18,5 +18,9 @@ public class PersonalInfoAccessLogReqVO {
     private String rgtrId;      // 등록자아이디
     public String mdfcnDt;      // 수정일시
     public String mdfrId;       // 수정자ID
+    public String rqstrIpAddr;  // 요청자IP주소
+    public String rqstrId;      // 요청자아이디
+    public String qnaSqlCn;     // 질의응답SQL내용
+    public String prvcInclYn;   // 개인정보포함여부
 
 }

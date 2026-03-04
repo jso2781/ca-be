@@ -10,12 +10,15 @@ import kr.or.kids.domain.ca.msg.vo.MsgImgVO;
 import kr.or.kids.domain.ca.msg.vo.MsgListVO;
 import kr.or.kids.domain.ca.msg.vo.MsgRsltVO;
 import kr.or.kids.domain.ca.msg.vo.MsgSndngVO;
+import kr.or.kids.global.system.common.vo.ApiPrnDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -28,43 +31,24 @@ public class MessageService {
     private final MsgImgMapper msgImgMapper;
     private final SuremMessageClient client;
 
-    /* =====================
-       KIND 처리
-       ===================== */
+    @Value("${spring.surem.testMode:false}")
+    private boolean testMode;
+
     private String normalizeKind(String kind) {
         if (kind == null) return null;
         return switch (kind) {
-            case "SMS" -> "S";
-            case "LMS", "MMS" -> "M";
+            case "SMS"           -> "S";
+            case "LMS", "MMS"   -> "M";
             case "KAKAO", "TALK" -> "T";
-            case "INTL" -> "I";
-            case "RCS" -> "R";
-            case "S", "M", "T", "I", "R" -> kind;
+            case "INTL"          -> "I";
+            case "RCS"           -> "R";
+            case "S","M","T","I","R" -> kind;
             default -> throw new IllegalArgumentException("유효하지 않은 KIND: " + kind);
         };
     }
 
-    private String convertToSuremKind(String kind) {
-        return switch (kind) {
-            case "S" -> "SMS";
-            case "M" -> "LMS";
-            case "T" -> "KAKAO";
-            case "I" -> "INTL";
-            case "R" -> "RCS";
-            default -> throw new IllegalArgumentException("유효하지 않은 API KIND: " + kind);
-        };
-    }
-
-    /* =====================
-       이미지 저장
-       ===================== */
     private void saveMsgImagesIfAny(MsgSndngVO vo) {
-
-        if (vo.getEtc1() == null
-                && vo.getEtc2() == null
-                && vo.getEtc3() == null) {
-            return;
-        }
+        if (vo.getEtc1() == null && vo.getEtc2() == null && vo.getEtc3() == null) return;
 
         MsgImgVO img = new MsgImgVO();
         img.setMsgImgSn(msgImgMapper.selectNextMsgImgSn());
@@ -79,7 +63,6 @@ public class MessageService {
         img.setFilePath1(vo.getEtc1());
         img.setFilePath2(vo.getEtc2());
         img.setFilePath3(vo.getEtc3());
-
         img.setBiztype(vo.getBiztype());
         img.setUsercode(vo.getUsercode());
         img.setRgtrId(vo.getRgtrId());
@@ -88,65 +71,160 @@ public class MessageService {
         msgImgMapper.insertMsgImg(img);
     }
 
-    /* =====================
-       메인 발송
-       ===================== */
-    @Transactional
-    public SuremApiSendResponse send(MsgSndngVO msgVO) {
+    private SuremApiSendRequest buildRequest(MsgSndngVO vo, String kind) {
+        return switch (kind) {
+            case "T" -> SuremApiSendRequest.builder()
+                    .bizType(vo.getBiztype())
+                    .senderKey(vo.getSenderKey())
+                    .templateCode(vo.getTemplatecode())
+                    .to(vo.getCallphone())
+                    .text(vo.getMsg())
+                    .reqPhone(vo.getReqphone())
+                    .reSend("Y")
+                    .messageId(vo.getSeqno() != null ? vo.getSeqno().intValue() : null)
+                    .build();
+            case "R" -> SuremApiSendRequest.builder()
+                    .serviceType(vo.getServiceType())
+                    .brandKey(vo.getBrandKey())
+                    .chatbotId(vo.getChatbotId())
+                    .phone(vo.getCallphone())
+                    .messagebaseId(vo.getMessagebaseId())
+                    .body(vo.getRcsBody())
+                    .header("0")
+                    .messageId(vo.getSeqno() != null ? vo.getSeqno().intValue() : null)
+                    .build();
+            case "I" -> SuremApiSendRequest.builder()
+                    .country(vo.getCountry())
+                    .to(vo.getCallphone())
+                    .text(vo.getMsg())
+                    .reqPhone(vo.getReqphone())
+                    .messageId(vo.getSeqno() != null ? vo.getSeqno().intValue() : null)
+                    .build();
+            default -> SuremApiSendRequest.builder()  // S, M
+                    .to(vo.getCallphone())
+                    .text(vo.getMsg())
+                    .reqPhone(vo.getReqphone())
+                    .subject(vo.getSubject())
+                    .messageId(vo.getSeqno() != null ? vo.getSeqno().intValue() : null)
+                    .build();
+        };
+    }
 
-        // 1. KIND 정규화
+    @Transactional
+    public ApiPrnDto send(MsgSndngVO msgVO) {
+        ApiPrnDto result                = new ApiPrnDto();
+        HashMap<String, Object> bizData = new HashMap<>();
+
         String normalizedKind = normalizeKind(msgVO.getKind());
         msgVO.setKind(normalizedKind);
 
-        // 2. 발송요청 저장
         sndngMapper.insertMsgSndng(msgVO);
-
-        // 3. 이미지 저장
         saveMsgImagesIfAny(msgVO);
 
-        // 4. Surem 요청 생성
-        SuremApiSendRequest req = new SuremApiSendRequest();
-        req.setUsercode(msgVO.getUsercode());
-        req.setBiztype(msgVO.getBiztype());
-        req.setReqname(msgVO.getReqname());
-        req.setReqphone(msgVO.getReqphone());
-        req.setCallname(msgVO.getCallname());
-        req.setCallphone(msgVO.getCallphone());
-        req.setSubject(msgVO.getSubject());
-        req.setMsg(msgVO.getMsg());
-        req.setKind(convertToSuremKind(normalizedKind));
+        SuremApiSendRequest  req = buildRequest(msgVO, normalizedKind);
+        SuremApiSendResponse res;
 
-        try {
-            // 5. Surem 호출 (현재 MOCK)
-            // SuremApiSendResponse res = client.send(req);
-
-            SuremApiSendResponse res = new SuremApiSendResponse();
-            res.setResult("MOCK");
-            res.setErrmsg("API 호출 생략");
-
-            // 6. 결과 저장
-            MsgRsltVO rslt = new MsgRsltVO();
-            rslt.setSeqno(msgVO.getSeqno());
-            rslt.setRsltCd(res.getResult());
-            rslt.setRsltMsg(res.getErrmsg());
-            rslt.setRgtrId(msgVO.getRgtrId());
-
-            rsltMapper.insertMsgRslt(rslt);
-
-            return res;
-
-        } catch (WebClientResponseException e) {
-
-            MsgRsltVO rslt = new MsgRsltVO();
-            rslt.setSeqno(msgVO.getSeqno());
-            rslt.setRsltCd("F");
-            rslt.setRsltMsg(e.getResponseBodyAsString());
-            rslt.setRgtrId(msgVO.getRgtrId());
-
-            rsltMapper.insertMsgRslt(rslt);
-            throw e;
+        if (testMode) {
+            log.info("========= MSG TEST MODE =========");
+            log.info("KIND    :::: {}", normalizedKind);
+            log.info("TO      :::: {}", msgVO.getCallphone());
+            log.info("SUBJECT :::: {}", msgVO.getSubject());
+            log.info("MSG     :::: {}", msgVO.getMsg());
+            log.info("=================================");
+            res = new SuremApiSendResponse();
+            res.setCode("1");
+            res.setMessage("TEST-MODE");
+        } else {
+            try {
+                String token = client.getToken();
+                res = client.send(req, token, normalizedKind);
+                log.debug("[MSG] SureM 발송 완료 code={}", res.getCode());
+            } catch (WebClientResponseException e) {
+                log.error("[MSG] SureM 발송 실패 status={} body={}", e.getStatusCode(), e.getResponseBodyAsString());
+                res = new SuremApiSendResponse();
+                res.setCode("0");
+                res.setMessage(e.getResponseBodyAsString());
+            } catch (Exception e) {
+                log.error("[MSG] SureM 발송 실패", e);
+                res = new SuremApiSendResponse();
+                res.setCode("0");
+                res.setMessage(e.getMessage());
+            }
         }
+
+        // 발송 결과 적재
+        MsgRsltVO rslt = new MsgRsltVO();
+        rslt.setSeqno(msgVO.getSeqno());
+        rslt.setRsltCd(res.getCode());
+        rslt.setRsltMsg(res.getMessage());
+        rslt.setRgtrId(msgVO.getRgtrId());
+        rsltMapper.insertMsgRslt(rslt);
+
+        // ApiPrnDto 세팅
+        bizData.put("suremCode",    res.getCode());
+        bizData.put("suremMessage", res.getMessage());
+
+        if ("1".equals(res.getCode())) {
+            result.setCode("0");
+            result.setMsg("메시지 발송이 완료되었습니다.");
+        } else {
+            result.setCode("-1");
+            result.setMsg("메시지 발송에 실패하였습니다. [" + res.getMessage() + "]");
+        }
+
+        result.setData(bizData);
+        return result;
     }
+    /*
+    public SuremApiSendResponse send(MsgSndngVO msgVO) {
+        String normalizedKind = normalizeKind(msgVO.getKind());
+        msgVO.setKind(normalizedKind);
+
+        sndngMapper.insertMsgSndng(msgVO);
+        saveMsgImagesIfAny(msgVO);
+
+        SuremApiSendRequest req = buildRequest(msgVO, normalizedKind);
+        SuremApiSendResponse res;
+
+        if (testMode) {
+            log.info("========= MSG TEST MODE =========");
+            log.info("KIND    :::: {}", normalizedKind);
+            log.info("TO      :::: {}", msgVO.getCallphone());
+            log.info("SUBJECT :::: {}", msgVO.getSubject());
+            log.info("MSG     :::: {}", msgVO.getMsg());
+            log.info("=================================");
+            res = new SuremApiSendResponse();
+            res.setCode("1");
+            res.setMessage("TEST-MODE");
+        } else {
+            try {
+                String token = client.getToken();
+                res = client.send(req, token, normalizedKind);
+                log.debug("[MSG] SureM 발송 완료 code={}", res.getCode());
+            } catch (WebClientResponseException e) {
+                log.error("[MSG] SureM 발송 실패 status={} body={}", e.getStatusCode(), e.getResponseBodyAsString());
+                res = new SuremApiSendResponse();
+                res.setCode("0");
+                res.setMessage(e.getResponseBodyAsString());
+            } catch (Exception e) {
+                log.error("[MSG] SureM 발송 실패", e);
+                res = new SuremApiSendResponse();
+                res.setCode("0");
+                res.setMessage(e.getMessage());
+            }
+        }
+
+        MsgRsltVO rslt = new MsgRsltVO();
+        rslt.setSeqno(msgVO.getSeqno());
+        rslt.setRsltCd(res.getCode());
+        rslt.setRsltMsg(res.getMessage());
+        rslt.setRgtrId(msgVO.getRgtrId());
+        rsltMapper.insertMsgRslt(rslt);
+
+        return res;
+    }
+    */
+
     @Transactional(readOnly = true)
     public List<MsgListVO> getMsgSndngList(MsgListVO msgListVO) {
         return sndngMapper.selectMsgList(msgListVO);

@@ -133,6 +133,7 @@ public class AuthServiceImpl implements AuthService
                     // 로그인 성공하변 회원정보기본에서 로그인 실패 횟수 + 1 증가
                     mp.setPswdErrNmtm(pswdErrNmtm);
                     mp.setMdfrId(mbrId);
+                //  mp.setEncptMbrPswd("AuthService.login");
 
                     mbrInfoMapper.updateMbrInfo(mp);
 

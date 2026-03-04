@@ -8,6 +8,7 @@
 
     <select id="getMbrToken" parameterType="MbrTokenPVO" resultType="MbrTokenRVO" >
         /* 대국민포털_회원_TOKEN 조회 (MbrTokenMapper.getMbrToken) */
+
         SELECT
                  token_sn
                 ,mbr_id

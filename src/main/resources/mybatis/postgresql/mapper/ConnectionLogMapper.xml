@@ -8,6 +8,7 @@
     <sql id="commonList">
         SELECT
                 a.sess_log_sn,
+                a.net_se_cd ,
                 a.lgn_se_cd ,
                 a.srvc_user_id ,
                 a.rqstr_ip_addr,
@@ -16,6 +17,9 @@
                 a.cntn_dtl_expln,
                 a.cert_token_vl,
                 a.token_crt_hr ,
+                a.task_se_cd,
+                a.srvc_nm ,
+                a.flfmt_hr ,
                 a.sess_expry_prnmnt_hr,
                 a.lgt_dt,
                 a.reg_dt ,
@@ -25,7 +29,7 @@
         FROM
             kids_own.tb_ca_l_sesn_log_info_mng a
         WHERE 1=1
-        ORDER BY a.acsr_id DESC
+        ORDER BY a.rgtr_id DESC
     </sql>
 
     <!-- 기본 목록 조회 -->
@@ -59,6 +63,8 @@
                                                         cert_token_vl,
                                                         token_crt_hr ,
                                                         task_se_cd,
+                                                        srvc_nm,
+                                                        flfmt_hr,
                                                         sess_expry_prnmnt_hr,
                                                         lgt_dt,
                                                         reg_dt ,
@@ -77,6 +83,8 @@
                                                        ,#{certTokenVl}
                                                        ,#{tokenCrtHr}
                                                        ,#{taskSeCd}
+                                                       ,#{srvcNm}
+                                                       ,#{flfmtHr}
                                                        ,#{sessExpryPrnmntHr}
                                                        ,NOW()
                                                        ,NOW()
@@ -85,5 +93,4 @@
                                                        ,#{mdfrId}
                                                       )
     </insert>
-
 </mapper>

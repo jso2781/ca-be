@@ -7,27 +7,25 @@
     <!--업무별 접속내역 목록조회 -->
     <sql id="commonList">
         SELECT
-                a.acsr_id,
-                a.cntn_log_sn,
-                a.inpt_dt,
-                a.inst_cd,
-                a.trgt_menu_nm,
-                a.qna,
-                a.url_addr,
-                a.task_se_cd_no,
-                a.cntn_dt,
-                a.acsr_nm,
-                a.rqstr_id,
-                a.task_se_cd,
-                a.flfmt_task_cd,
-                a.srvc_nm,
-                a.etc_memo,
-                a.prvc_incl_yn,
-                a.reg_dt,
-                a.rgtr_id
-        FROM kids_own.tb_ca_l_cntn_info_log a
+              a.menu_utztn_sn
+            , a.sess_log_sn
+            , a.inpt_dt
+            , a.menu_id
+            , a.url_addr
+            , a.task_se_cd_no
+            , a.cntn_dt
+            , a.acsr_nm
+            , a.rqstr_id
+            , a.flfmt_task_cd
+            , a.etc_memo_cn
+            , a.prvc_incl_yn
+            , a.reg_dt
+            , a.rgtr_id
+            , a.mdfcn_dt
+            , a.mdfr_id
+        FROM kids_own.tb_ca_l_task_acs_hstry a
         WHERE 1=1
-        ORDER BY a.acsr_id DESC
+        ORDER BY a.menu_utztn_sn DESC
     </sql>
 
 

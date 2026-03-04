@@ -9,6 +9,7 @@ import kr.or.kids.domain.ca.mail.vo.EmlSndngHistVO;
 import kr.or.kids.domain.ca.mail.vo.EmlSndngVO;
 import kr.or.kids.domain.ca.mail.vo.MailListVO;
 import kr.or.kids.domain.ca.mail.vo.MailSendReqVO;
+import kr.or.kids.global.system.common.vo.ApiPrnDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -70,20 +72,22 @@ public class MailService {
      * 단건 메일 발송
      */
     @Transactional
-    public SenseMailResponse send(MailSendReqVO req) {
-
+    public ApiPrnDto send(MailSendReqVO req) {
+        ApiPrnDto result                = new ApiPrnDto();
+        HashMap<String, Object> bizData = new HashMap<>();
         /* ==================================================
          * 1. 메일 발송 원장 INSERT (대기)
          * ================================================== */
         EmlSndngVO sndng = EmlSndngVO.builder()
-                .emlTtl(req.getTitle())
-                .emlCn(req.getContent())
-                .sndptyFlnm(req.getSenderName())
-                .sndptyEmlAddr(req.getSenderEmail())
-                .rcvrFlnm(req.getReceiverName())
-                .rcvrEmlAddr(req.getReceiverEmail())
+                .emlTtl(req.getEmlTtl())
+                .emlCn(req.getEmlCn())
+                .sndptyFlnm(req.getSndptyFlnm())
+                .sndptyEmlAddr(req.getSndptyEmlAddr())
+                .rcvrFlnm(req.getRcvrFlnm())
+                .rcvrEmlAddr(req.getRcvrEmlAddr())
                 .sndngRsltCd("9") // 대기
                 .rgtrId("SYSTEM")
+                .mdfrId("SYSTEM")
                 .build();
 
         emlSndngMapper.insertEmlSndng(sndng);
@@ -91,11 +95,9 @@ public class MailService {
         /* ==================================================
          * 2. 센스메일 API 호출
          * ================================================== */
-        SenseMailResponse apiRes;
+        /*SenseMailResponse apiRes;
         try {
-            apiRes = senseMailClient.send(
-                    SenseMailRequest.from(req)
-            );
+            apiRes = senseMailClient.send(SenseMailRequest.from(req));
         } catch (Exception e) {
             log.error("[MAIL] 센스메일 발송 실패", e);
 
@@ -105,22 +107,75 @@ public class MailService {
             apiRes.setErrorMessage(e.getMessage());
         }
 
-        String finalResultCd =
-                "1".equals(apiRes.getResultCode()) ? "1" : "0";
+        String finalResultCd ="1".equals(apiRes.getResultCode()) ? "1" : "0";
+*/
+        /*SenseMailResponse apiRes;
 
+        if (testMode) {
+
+            apiRes = new SenseMailResponse();
+            apiRes.setCode("1");           // 성공으로 간주
+            apiRes.setMsg("메일 발송 성공 하였습니다.");
+            apiRes.setData(bizData);
+
+        } else {
+            try {
+                apiRes = senseMailClient.send(SenseMailRequest.from(req));
+            } catch (Exception e) {
+                log.error("[MAIL] 센스메일 발송 실패", e);
+                apiRes = new SenseMailResponse();
+                apiRes.setCode("0");
+                apiRes.setErrMsg(e.getMessage());
+            }
+        }
+        String finalResultCd ="1".equals(apiRes.getCode()) ? "1" : "0";*/
+        /* ==================================================
+         * 2. SMTP 메일 발송
+         * ================================================== */
+        String resultCd;
+        String failMsg = null;
+        String msg = null;
+        String rcvrEmlAddr;
+
+        try {
+            if (testMode) {
+                // 테스트 모드: 실제 발송 없이 로그만
+                log.info("========= MAIL TEST MODE =========");
+                log.info("TO      :::: {}", req.getRcvrEmlAddr());
+                log.info("SUBJECT :::: {}", req.getEmlTtl());
+                log.info("CONTENT :::: {}", req.getEmlCn());
+                log.info("==================================");
+            } else {
+                SimpleMailMessage message = new SimpleMailMessage();
+                message.setFrom(req.getSndptyEmlAddr());
+                message.setTo(req.getRcvrEmlAddr());
+                message.setSubject(req.getEmlTtl());
+                message.setText(req.getEmlCn());
+                mailSender.send(message);
+            }
+            resultCd = "1"; // 성공
+            msg = "메시지 발송 성공하였습니다.";
+            rcvrEmlAddr = req.getRcvrEmlAddr();
+
+        } catch (Exception e) {
+            log.error("[MAIL] SMTP 발송 실패", e);
+            resultCd = "0"; // 실패
+            failMsg = e.getMessage();
+        }
         /* ==================================================
          * 3. 발송 이력 INSERT
          * ================================================== */
         EmlSndngHistVO hist = EmlSndngHistVO.builder()
                 .emlSndngSn(sndng.getEmlSndngSn())
-                .rcvrEmlAddr(req.getReceiverEmail())
-                .rcvrFlnm(req.getReceiverName())
-                .sndngRsltCd(finalResultCd)
+                .rcvrEmlAddr(req.getRcvrEmlAddr())
+                .rcvrFlnm(req.getRcvrFlnm())
+                .sndngRsltCd(resultCd)
                 .sndngTryCnt(1)
-                .extSndngRsltCd(apiRes.getResultCode())
-                .extMsgId(apiRes.getMessageId())
-                .extFailMsg(apiRes.getErrorMessage())
+                .otsdEmlOrgnlRsltCd(resultCd)
+                .otsdEmlMsgId(null)
+                .otsdEmlErrMsgCn(failMsg)
                 .rgtrId("SYSTEM")
+                .mdfrId("SYSTEM")
                 .build();
 
         emlSndngHistMapper.insertHist(hist);
@@ -128,19 +183,33 @@ public class MailService {
         /* ==================================================
          * 4. 원장 결과 UPDATE
          * ================================================== */
-        sndng.setSndngRsltCd(finalResultCd);
+        sndng.setSndngRsltCd(resultCd);
         sndng.setMdfrId("SYSTEM");
         emlSndngMapper.updateResult(sndng);
 
         /* ==================================================
-         * 5. 프론트로 내려줄 응답 (중요)
+         * 5. 내려줄 응답
          * ================================================== */
         SenseMailResponse res = new SenseMailResponse();
-        res.setResultCode(finalResultCd);
-        res.setMessageId(apiRes.getMessageId());
-        res.setErrorMessage(apiRes.getErrorMessage());
+        res.setCode(resultCd);
+        res.setMsg(msg);
+        res.setErrMsg(failMsg);
+        res.setData(bizData);
 
-        return res;   // ✅ 절대 null / 빈 객체 금지
+        // ApiPrnDto 세팅
+        bizData.put("code",    res.getCode());
+        bizData.put("message", res.getMsg());
+        bizData.put("rcvrEmlAddr", req.getRcvrEmlAddr());
+        if ("1".equals(res.getCode())) {
+            result.setCode("1");
+            result.setMsg("메시지 발송이 완료되었습니다.");
+        } else {
+            result.setCode("-1");
+            result.setMsg("메시지 발송에 실패하였습니다. [" + res.getMsg() + "]");
+        }
+
+        result.setData(bizData);
+        return result;
     }
     /**
      * 메일 리스트 조회

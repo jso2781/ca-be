@@ -31,6 +31,7 @@ public class EmlSndngVO implements Serializable {
     /** 수신자 이름 */
     private String rcvrFlnm;
 
+    private String otsdEmlDmndId;
     /** 수신자 이메일 */
     private String rcvrEmlAddr;
 
@@ -44,7 +45,7 @@ public class EmlSndngVO implements Serializable {
     private String atchFileId;
 
     /** 발송 일시 */
-    private LocalDateTime sndngDttm;
+    private LocalDateTime dsptchDt;
 
     /** 센스메일 요청 ID */
     private String extReqId;

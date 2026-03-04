@@ -6,12 +6,12 @@
 <mapper namespace="kr.or.kids.domain.ca.msg.mapper.MsgRsltMapper">
 
     <insert id="insertMsgRslt" parameterType="MsgRsltVO">
-        INSERT INTO public.tb_ca_i_msg_rslt  (
-                                                  SEQNO
-                                                , RSLT_CD
-                                                , RSLT_MSG
-                                                , REG_DT
-                                                , RGTR_ID
+        INSERT INTO kids_link_own.tb_ca_i_msg_rslt  (
+                                                      seqno
+                                                    , rslt_cd
+                                                    , rslt_msg
+                                                    , reg_dt
+                                                    , rgtr_id
                                                ) VALUES (
                                                          #{seqno}
                                                        , #{rsltCd}

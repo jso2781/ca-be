@@ -9,14 +9,14 @@
 
         <!-- seqno 채번 -->
         <selectKey keyProperty="seqno"  resultType="java.math.BigDecimal" order="BEFORE">
-            SELECT nextval('tb_ca_i_msg_sndng_seq')
+            SELECT nextval('kids_own.sq_ca_seqno')
         </selectKey>
-        INSERT INTO public.tb_ca_i_msg_sndng (
+        INSERT INTO kids_link_own.tb_ca_i_msg_sndng (
                                                 seqno
                                               , intime
                                               , usercode
                                               , biztype
-                                              , yellow_key
+                                              , yellowid_key
                                               , reqname
                                               , reqphone
                                               , callname
@@ -25,8 +25,8 @@
                                               , subject
                                               , msg
                                               , reqtime
-                                              , sendtime
-                                              , rectime
+                                              , senttime
+                                              , recvtime
                                               , result
                                               , errcode
                                               , kind
@@ -35,13 +35,13 @@
                                               , resend
                                               , templatecode
                                               , retext
-                                              , sendmedia
+                                              , sentmedia
                                               , mediatype
                                               , attachment
                                               , supplement
                                               , carousel
                                               , header
-                                              , kakaorecord
+                                              , kakaoerrcode
                                               , template_title
                                               , targeting
                                               , campaignname
@@ -60,7 +60,7 @@
                                               , #{intime}
                                               , #{usercode}
                                               , #{biztype}
-                                              , #{yellowKey}
+                                              , #{yellowidKey}
                                               , #{reqname}
                                               , #{reqphone}
                                               , #{callname}
@@ -69,8 +69,8 @@
                                               , #{subject}
                                               , #{msg}
                                               , #{reqtime}
-                                              , #{sendtime}
-                                              , #{rectime}
+                                              , #{senttime}
+                                              , #{recvtime}
                                               , #{result}
                                               , #{errcode}
                                               , #{kind}
@@ -79,13 +79,13 @@
                                               , #{resend}
                                               , #{templatecode}
                                               , #{retext}
-                                              , #{sendmedia}
+                                              , #{sentmedia}
                                               , #{mediatype}
                                               , #{attachment}
                                               , #{supplement}
                                               , #{carousel}
                                               , #{header}
-                                              , #{kakaorecord}
+                                              , #{kakaoerrcode}
                                               , #{templateTitle}
                                               , #{targeting}
                                               , #{campaignname}
@@ -97,12 +97,11 @@
                                               , #{etc4}
                                               , #{etc5}
                                               , #{rgtrId}
-                                              , #{mdfcnDt}
+                                              , now()
                                               , #{mdfrId}
                                                 )
     </insert>
     <select id="selectMsgList" resultType="kr.or.kids.domain.ca.msg.vo.MsgListVO">
-
         SELECT
               seqno                                   AS seqNo
             , result                                  AS status
@@ -111,8 +110,8 @@
             , subject                                 AS title
             , msg                                     AS message
             , intime                                  AS sendDateTime
-            , rectime                                 AS receiveDateTime
-        FROM public.tb_ca_i_msg_sndng
+            , recvtime                                 AS receiveDateTime
+        FROM kids_link_own.tb_ca_i_msg_sndng
         ORDER BY intime DESC
     </select>
 

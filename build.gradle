@@ -14,9 +14,11 @@ java {
     }
 }
 
+/*
 repositories {
     mavenCentral()
 }
+*/
 
 // 한글 인코딩 설정
 tasks.withType(JavaCompile) {
@@ -33,9 +35,6 @@ dependencies {
 
     // 추가
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    
-    // Java Mail
-    implementation 'com.sun.activation:javax.activation:1.2.0'
 
     // =========================================================================
     // Redis
@@ -71,7 +70,7 @@ dependencies {
      implementation fileTree(dir: 'libs/oz', include: ['*.jar'])
 
     // Dev
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // developmentOnly 'org.springframework.boot:spring-boot-devtools'
     // page helper
     implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.7'
 

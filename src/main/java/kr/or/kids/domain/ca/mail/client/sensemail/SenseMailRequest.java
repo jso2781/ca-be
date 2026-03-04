@@ -13,10 +13,10 @@ public class SenseMailRequest {
 
     public static SenseMailRequest from(MailSendReqVO req) {
         SenseMailRequest senseReq = new SenseMailRequest();
-        senseReq.setSubject(req.getTitle());
-        senseReq.setBody(req.getContent());
-        senseReq.setFrom(req.getSenderEmail());
-        senseReq.setTo(req.getReceiverEmail());
+        senseReq.setSubject(req.getEmlTtl());
+        senseReq.setBody(req.getEmlCn());
+        senseReq.setFrom(req.getSndptyEmlAddr());
+        senseReq.setTo(req.getRcvrEmlAddr());
         return senseReq;
     }
 }

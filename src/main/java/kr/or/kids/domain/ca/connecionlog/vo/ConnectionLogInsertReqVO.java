@@ -25,5 +25,7 @@ public class ConnectionLogInsertReqVO {
     private String rgtrId;                  // 등록자아이디
     private Timestamp mdfcnDt;              // 수정일시
     private String  mdfrId;                 // 수정자아이디
+    private String  srvcNm;                 // 서비스명
+    private String  flfmtHr;                // 수행시간
 
 }

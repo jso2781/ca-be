@@ -46,13 +46,21 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 // 개발 환경을 위한 기본 허용. 운영 시에는 실제 UI 도메인으로 제한하세요.
-                .allowedOrigins("http://localhost:5173", "http://localhost:3000","http://192.168.2.149:30012","http://192.168.2.149:30020")
+                .allowedOrigins("http://localhost:5173",
+                                "http://localhost:3000",
+                                "http://192.168.2.149:30012",
+                                "http://192.168.2.149:30013",
+                                "http://192.168.2.149:30020")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS").allowedHeaders("*")
                 .allowCredentials(true);
         
         // OZ 리포트 서블릿을 위한 CORS 설정
         registry.addMapping("/oz90/**")
-                .allowedOrigins("http://localhost:5173","http://localhost:3000","http://192.168.2.149:30012","http://192.168.2.149:30020")
+                .allowedOrigins("http://localhost:5173",
+                                "http://localhost:3000",
+                                "http://192.168.2.149:30012",
+                                "http://192.168.2.149:30013",
+                                "http://192.168.2.149:30020")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);

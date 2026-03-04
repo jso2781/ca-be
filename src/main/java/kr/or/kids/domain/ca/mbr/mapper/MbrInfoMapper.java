@@ -18,7 +18,7 @@ public interface MbrInfoMapper
      * @param mbrInfoPVO 조회용 파라메터 정보
      * @return 조회된 대국민포털_회원정보기본
      */
-    List<MbrInfoRVO> list();
+    List<MbrInfoRVO> getMbrInfo();
 
     /**
      * 대국민포털_회원정보기본 기존 아이디, 이메일 존재여부 조회

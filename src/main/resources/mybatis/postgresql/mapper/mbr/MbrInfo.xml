@@ -3,29 +3,29 @@
 <mapper namespace="kr.or.kids.domain.ca.mbr.mapper.MbrInfoMapper">
 
     <resultMap id="MbrInfoMap" type="MbrInfoRVO">
-      <result property="mbrNo" column="mbr_no"/>
-      <result property="mbrId" column="mbr_id"/>
-      <result property="encptMbrFlnm" column="encpt_mbr_flnm"/>
-      <result property="encptMbrEmlNm" column="encpt_mbr_eml_nm"/>
-      <result property="encptMbrPswd" column="encpt_mbr_pswd"/>
-      <result property="encptMbrTelno" column="encpt_mbr_telno"/>
-      <result property="mbrTypeCd" column="mbr_type_cd"/>
-      <result property="mbrJoinSttsCd" column="mbr_join_stts_cd"/>
-      <result property="mbrJoinDt" column="mbr_join_dt"/>
-      <result property="mbrWhdwlRsn" column="mbr_whdwl_rsn"/>
-      <result property="mbrWhdwlDt" column="mbr_whdwl_dt"/>
-      <result property="cnstnMbcmtYn" column="cnstn_mbcmt_yn"/>
-      <result property="encptBfrPswd" column="encpt_bfr_pswd"/>
-      <result property="pswdChgDt" column="pswd_chg_dt"/>
-      <result property="pswdErrNmtm" column="pswd_err_nmtm"/>
-      <result property="linkInfoIdntfId" column="link_info_idntf_id"/>
-      <result property="certTokenVl" column="cert_token_vl"/>
-      <result property="rgtrId" column="rgtr_id"/>
-      <result property="regDt" column="reg_dt"/>
-      <result property="mdfrId" column="mdfr_id"/>
-      <result property="mdfcnDt" column="mdfcn_dt"/>
-      <result property="expertYn" column="expert_yn"/>
-      <result property="apprInstTaskList" column="appr_inst_task_json_array" typeHandler="kr.or.kids.domain.ca.mbr.mapper.typehandler.ApprInstTaskJsonArrayTypeHandler"/>
+        <result property="mbrNo" column="mbr_no"/>
+        <result property="mbrId" column="mbr_id"/>
+        <result property="encptMbrFlnm" column="encpt_mbr_flnm"/>
+        <result property="encptMbrEmlNm" column="encpt_mbr_eml_nm"/>
+        <result property="encptMbrPswd" column="encpt_mbr_pswd"/>
+        <result property="encptMbrTelno" column="encpt_mbr_telno"/>
+        <result property="mbrTypeCd" column="mbr_type_cd"/>
+        <result property="mbrJoinSttsCd" column="mbr_join_stts_cd"/>
+        <result property="mbrJoinDt" column="mbr_join_dt"/>
+        <result property="mbrWhdwlRsn" column="mbr_whdwl_rsn"/>
+        <result property="mbrWhdwlDt" column="mbr_whdwl_dt"/>
+        <result property="cnstnMbcmtYn" column="cnstn_mbcmt_yn"/>
+        <result property="encptBfrPswd" column="encpt_bfr_pswd"/>
+        <result property="pswdChgDt" column="pswd_chg_dt"/>
+        <result property="pswdErrNmtm" column="pswd_err_nmtm"/>
+        <result property="linkInfoIdntfId" column="link_info_idntf_id"/>
+        <result property="certTokenVl" column="cert_token_vl"/>
+        <result property="rgtrId" column="rgtr_id"/>
+        <result property="regDt" column="reg_dt"/>
+        <result property="mdfrId" column="mdfr_id"/>
+        <result property="mdfcnDt" column="mdfcn_dt"/>
+        <result property="expertYn" column="expert_yn"/>
+        <result property="apprInstTaskList" column="appr_inst_task_json_array" typeHandler="kr.or.kids.domain.ca.mbr.mapper.typehandler.ApprInstTaskJsonArrayTypeHandler"/>
     </resultMap>
 
     <select id="verifyPassword" parameterType="VerifyPasswordPVO" resultType="int" >
@@ -33,9 +33,9 @@
         SELECT COUNT(*) as cnt
         FROM kids_own.TB_PP_M_MBR_INFO
         WHERE 1=1
-        AND mbr_id = #{mbrId}
-        AND encpt_mbr_pswd = #{encptMbrPswd}
-        AND mbr_whdwl_dt is null
+          AND mbr_id = #{mbrId}
+          AND encpt_mbr_pswd = #{encptMbrPswd}
+          AND mbr_whdwl_dt is null
     </select>
 
     <select id="checkMbrInfo" parameterType="MbrInfoPVO" resultType="int" >
@@ -55,48 +55,48 @@
     <select id="getMbrInfo" parameterType="MbrInfoPVO" resultMap="MbrInfoMap" >
         /* 대국민포털_회원정보기본 조회 (MbrInfoMapper.getMbrInfo) */
         SELECT
-             mbr.mbr_no
-            ,mbr.mbr_id
-            ,mbr.encpt_mbr_flnm
-            ,mbr.encpt_mbr_eml_nm
-            ,mbr.encpt_mbr_pswd
-            ,mbr.encpt_mbr_telno
-            ,mbr.mbr_type_cd
-            ,mbr.mbr_join_stts_cd
-            ,mbr.mbr_join_dt
-            ,mbr.mbr_whdwl_rsn
-            ,mbr.mbr_whdwl_dt
-            ,mbr.cnstn_mbcmt_yn
-            ,mbr.encpt_bfr_pswd
-            ,mbr.pswd_chg_dt
-            ,mbr.pswd_err_nmtm
-            ,mbr.link_info_idntf_id
-            ,mbr.cert_token_vl
-            ,mbr.rgtr_id
-            ,mbr.reg_dt
-            ,mbr.mdfr_id
-            ,mbr.mdfcn_dt
-            ,ex.expert_yn
-            ,ex.appr_inst_task_json_array
+        mbr.mbr_no
+        ,mbr.mbr_id
+        ,mbr.encpt_mbr_flnm
+        ,mbr.encpt_mbr_eml_nm
+        ,mbr.encpt_mbr_pswd
+        ,mbr.encpt_mbr_telno
+        ,mbr.mbr_type_cd
+        ,mbr.mbr_join_stts_cd
+        ,mbr.mbr_join_dt
+        ,mbr.mbr_whdwl_rsn
+        ,mbr.mbr_whdwl_dt
+        ,mbr.cnstn_mbcmt_yn
+        ,mbr.encpt_bfr_pswd
+        ,mbr.pswd_chg_dt
+        ,mbr.pswd_err_nmtm
+        ,mbr.link_info_idntf_id
+        ,mbr.cert_token_vl
+        ,mbr.rgtr_id
+        ,mbr.reg_dt
+        ,mbr.mdfr_id
+        ,mbr.mdfcn_dt
+        ,ex.expert_yn
+        ,ex.appr_inst_task_json_array
         FROM kids_own.tb_pp_m_mbr_info mbr
         LEFT JOIN LATERAL (
-            SELECT
-                 CASE WHEN COUNT(et.exprt_no) > 0 THEN 'Y' ELSE 'N' END as expert_yn
-                ,COALESCE(
-                    jsonb_agg(
-                        jsonb_build_object(
-                            'brno', it.brno,
-                            'bzmn_task_mng_no', it.bzmn_task_mng_no
-                        )
-                    ) FILTER (WHERE et.exprt_no = it.tkcg_exprt_no ), '[]'::jsonb
-                 ) AS appr_inst_task_json_array
-            FROM kids_own.tb_pp_m_exprt_info ex1
-            INNER JOIN kids_own.tb_pp_m_exprt_task et
-                ON ex1.exprt_no = et.exprt_no
-            LEFT JOIN kids_own.tb_pp_m_inst_task it
-                ON et.bzmn_task_mng_no = it.bzmn_task_mng_no
-            WHERE mbr.mbr_no = ex1.mbr_no
-            AND ex1.exprt_hdof_yn = 'Y'
+        SELECT
+        CASE WHEN COUNT(et.exprt_no) > 0 THEN 'Y' ELSE 'N' END as expert_yn
+        ,COALESCE(
+        jsonb_agg(
+        jsonb_build_object(
+        'brno', it.brno,
+        'bzmn_task_mng_no', it.bzmn_task_mng_no
+        )
+        ) FILTER (WHERE et.exprt_no = it.tkcg_exprt_no ), '[]'::jsonb
+        ) AS appr_inst_task_json_array
+        FROM kids_own.tb_pp_m_exprt_info ex1
+        INNER JOIN kids_own.tb_pp_m_exprt_task et
+        ON ex1.exprt_no = et.exprt_no
+        LEFT JOIN kids_own.tb_pp_m_inst_task it
+        ON et.bzmn_task_mng_no = it.bzmn_task_mng_no
+        WHERE mbr.mbr_no = ex1.mbr_no
+        AND ex1.exprt_hdof_yn = 'Y'
         ) ex ON TRUE
         WHERE 1=1
         <if test="mbrNo != null and mbrNo != ''">
@@ -111,139 +111,139 @@
     <insert id="insertMbrInfo" parameterType="MbrInfoPVO">
         INSERT INTO kids_own.TB_PP_M_MBR_INFO
         (
-             mbr_no
-            ,mbr_id
-            ,encpt_mbr_flnm
-            ,encpt_mbr_eml_nm
-            ,encpt_mbr_pswd
-            ,encpt_mbr_telno
-            ,mbr_type_cd
-            ,mbr_join_stts_cd
-            ,mbr_join_dt
-            ,mbr_whdwl_rsn
-            ,mbr_whdwl_dt
-            ,encpt_bfr_pswd
-            ,pswd_chg_dt
-            ,pswd_err_nmtm
-            ,link_info_idntf_id
-            ,cert_token_vl
-            ,rgtr_id
-            ,reg_dt
-            ,mdfr_id
-            ,mdfcn_dt
+          mbr_no
+        ,mbr_id
+        ,encpt_mbr_flnm
+        ,encpt_mbr_eml_nm
+        ,encpt_mbr_pswd
+        ,encpt_mbr_telno
+        ,mbr_type_cd
+        ,mbr_join_stts_cd
+        ,mbr_join_dt
+        ,mbr_whdwl_rsn
+        ,mbr_whdwl_dt
+        ,encpt_bfr_pswd
+        ,pswd_chg_dt
+        ,pswd_err_nmtm
+        ,link_info_idntf_id
+        ,cert_token_vl
+        ,rgtr_id
+        ,reg_dt
+        ,mdfr_id
+        ,mdfcn_dt
 
         )VALUES(
-            (
-                select to_char(now(), 'YYYY') || coalesce(LPAD((MAX(cast(substr(mbr_no, 5) as Integer)) + 1)::text, 6, '0'), '000001') as mbrNo
-                from kids_own.TB_PP_M_MBR_INFO
-                where mbr_no like to_char(now(), 'YYYY')|| '%'
-            )
-            ,#{mbrId}
-            ,#{encptMbrFlnm}
-            ,#{encptMbrEmlNm}
-            ,#{encptMbrPswd}
-            ,#{encptMbrTelno}
-            ,#{mbrTypeCd}
-            ,#{mbrJoinSttsCd}
-            ,to_timestamp(#{mbrJoinDt}, 'YYYY-MM-DD HH24:MI:SS')
-            ,#{mbrWhdwlRsn}
-            ,#{mbrWhdwlDt}
-            ,#{encptBfrPswd}
-            ,#{pswdChgDt}
-            ,#{pswdErrNmtm}
-            ,#{linkInfoIdntfId}
-            ,#{certTokenVl}
-            ,#{rgtrId}
-            ,now()
-            ,#{mdfrId}
-            ,now()
-        )
+                 (
+                     select to_char(now(), 'YYYY') || coalesce(LPAD((MAX(cast(substr(mbr_no, 5) as Integer)) + 1)::text, 6, '0'), '000001') as mbrNo
+                     from kids_own.TB_PP_M_MBR_INFO
+                     where mbr_no like to_char(now(), 'YYYY')|| '%'
+                 )
+               ,#{mbrId}
+               ,#{encptMbrFlnm}
+               ,#{encptMbrEmlNm}
+               ,#{encptMbrPswd}
+               ,#{encptMbrTelno}
+               ,#{mbrTypeCd}
+               ,#{mbrJoinSttsCd}
+               ,to_timestamp(#{mbrJoinDt}, 'YYYY-MM-DD HH24:MI:SS')
+               ,#{mbrWhdwlRsn}
+               ,#{mbrWhdwlDt}
+               ,#{encptBfrPswd}
+               ,#{pswdChgDt}
+               ,#{pswdErrNmtm}
+               ,#{linkInfoIdntfId}
+               ,#{certTokenVl}
+               ,#{rgtrId}
+               ,now()
+               ,#{mdfrId}
+               ,now()
+               )
     </insert>
 
     <select id="insertMbrInfo2" parameterType="MbrInfoPVO">
         /* 대국민포털_회원정보기본 입력 (MbrInfoMapper.insertMbrInfo) */
         WITH seq AS (
-          INSERT INTO kids_own.TB_PP_M_MBR_NO_SEQ (yyyy, last_seq)
-          VALUES (to_char(CURRENT_TIMESTAMP, 'YYYY'), 1)
-          ON CONFLICT (yyyy)
-          DO UPDATE SET last_seq = kids_own.TB_PP_M_MBR_NO_SEQ.last_seq + 1
-          RETURNING yyyy, last_seq
-        ),
-        ins AS (
-          INSERT INTO kids_own.TB_PP_M_MBR_INFO
-          (
-               mbr_no
-              ,mbr_id
-              ,encpt_mbr_flnm
-              ,encpt_mbr_eml_nm
-              ,encpt_mbr_pswd
-              ,encpt_mbr_telno
-              ,mbr_type_cd
-              ,mbr_join_stts_cd
-              ,mbr_join_dt
-              ,mbr_whdwl_rsn
-              ,mbr_whdwl_dt
-              ,encpt_bfr_pswd
-              ,pswd_chg_dt
-              ,pswd_err_nmtm
-              ,link_info_idntf_id
-              ,cert_token_vl
-              ,rgtr_id
-              ,reg_dt
+        INSERT INTO kids_own.TB_PP_M_MBR_NO_SEQ (yyyy, last_seq)
+        VALUES (to_char(CURRENT_TIMESTAMP, 'YYYY'), 1)
+        ON CONFLICT (yyyy)
+            DO UPDATE SET last_seq = kids_own.TB_PP_M_MBR_NO_SEQ.last_seq + 1
+                   RETURNING yyyy, last_seq
+                   ),
+                   ins AS (
+               INSERT INTO kids_own.TB_PP_M_MBR_INFO
+               (
+                 mbr_no
+               ,mbr_id
+               ,encpt_mbr_flnm
+               ,encpt_mbr_eml_nm
+               ,encpt_mbr_pswd
+               ,encpt_mbr_telno
+               ,mbr_type_cd
+               ,mbr_join_stts_cd
+               ,mbr_join_dt
+               ,mbr_whdwl_rsn
+               ,mbr_whdwl_dt
+               ,encpt_bfr_pswd
+               ,pswd_chg_dt
+               ,pswd_err_nmtm
+               ,link_info_idntf_id
+               ,cert_token_vl
+               ,rgtr_id
+               ,reg_dt
 
-              ,mdfr_id
-              ,mdfcn_dt
+               ,mdfr_id
+               ,mdfcn_dt
 
-          )
-          SELECT
-             seq.yyyy || LPAD(seq.last_seq::text, 6, '0') AS mbr_no
-            ,#{mbrId}
-            ,#{encptMbrFlnm}
-            ,#{encptMbrEmlNm}
-            ,#{encptMbrPswd}
-            ,#{encptMbrTelno}
-            ,#{mbrTypeCd}
-            ,#{mbrJoinSttsCd}
-            ,to_timestamp(#{mbrJoinDt}, 'YYYY-MM-DD HH24:MI:SS')
-            ,#{mbrWhdwlRsn}
-            ,#{mbrWhdwlDt}
-            ,#{encptBfrPswd}
-            ,#{pswdChgDt}
-            ,#{pswdErrNmtm}
-            ,#{linkInfoIdntfId}
-            ,#{certTokenVl}
-            ,#{rgtrId}
-            ,now()
+               )
+               SELECT
+                   seq.yyyy || LPAD(seq.last_seq::text, 6, '0') AS mbr_no
+                    ,#{mbrId}
+                    ,#{encptMbrFlnm}
+                    ,#{encptMbrEmlNm}
+                    ,#{encptMbrPswd}
+                    ,#{encptMbrTelno}
+                    ,#{mbrTypeCd}
+                    ,#{mbrJoinSttsCd}
+                    ,to_timestamp(#{mbrJoinDt}, 'YYYY-MM-DD HH24:MI:SS')
+                    ,#{mbrWhdwlRsn}
+                    ,#{mbrWhdwlDt}
+                    ,#{encptBfrPswd}
+                    ,#{pswdChgDt}
+                    ,#{pswdErrNmtm}
+                    ,#{linkInfoIdntfId}
+                    ,#{certTokenVl}
+                    ,#{rgtrId}
+                    ,now()
 
-            ,#{mdfrId}
-            ,now()
+                    ,#{mdfrId}
+                    ,now()
 
-          FROM seq
-          RETURNING mbr_no
-        )
+               FROM seq
+                   RETURNING mbr_no
+                   )
         SELECT mbr_no FROM ins
     </select>
     <update id="updateMbrInfo" parameterType="MbrInfoPVO">
         /* 대국민포털_회원정보기본 수정 (MbrInfoMapper.updateMbrInfo) */
         UPDATE kids_own.TB_PP_M_MBR_INFO
         SET
-             mbr_id = coalesce(#{mbrId}, mbr_id)
-            ,encpt_mbr_flnm = coalesce(#{encptMbrFlnm}, encpt_mbr_flnm)
-            ,encpt_mbr_eml_nm = coalesce(#{encptMbrEmlNm}, encpt_mbr_eml_nm)
-            ,encpt_mbr_pswd = coalesce(#{encptMbrPswd}, encpt_mbr_pswd)
-            ,encpt_mbr_telno = coalesce(#{encptMbrTelno}, encpt_mbr_telno)
-            ,mbr_type_cd = coalesce(#{mbrTypeCd}, mbr_type_cd)
-            ,mbr_join_stts_cd = coalesce(#{mbrJoinSttsCd}, mbr_join_stts_cd)
-            ,mbr_join_dt = coalesce(to_timestamp(#{mbrJoinDt}, 'YYYY-MM-DD HH24:MI:SS'), mbr_join_dt)
-            ,mbr_whdwl_rsn = coalesce(#{mbrWhdwlRsn}, mbr_whdwl_rsn)
-            ,mbr_whdwl_dt = coalesce(to_timestamp(#{mbrWhdwlDt}, 'YYYY-MM-DD HH24:MI:SS'), mbr_whdwl_dt)
-            ,encpt_bfr_pswd = coalesce(#{encptBfrPswd}, encpt_bfr_pswd)
-            ,pswd_chg_dt = coalesce(to_timestamp(#{pswdChgDt}, 'YYYY-MM-DD HH24:MI:SS'), pswd_chg_dt)
-            ,pswd_err_nmtm = coalesce(#{pswdErrNmtm}, pswd_err_nmtm)
-            ,link_info_idntf_id = coalesce(#{linkInfoIdntfId}, link_info_idntf_id)
-            ,cert_token_vl = coalesce(#{certTokenVl}, cert_token_vl)
-            ,mdfr_id = coalesce(#{mdfrId}, mdfr_id)
-            ,mdfcn_dt = now()
+        mbr_id = coalesce(#{mbrId}, mbr_id)
+        ,encpt_mbr_flnm = coalesce(#{encptMbrFlnm}, encpt_mbr_flnm)
+        ,encpt_mbr_eml_nm = coalesce(#{encptMbrEmlNm}, encpt_mbr_eml_nm)
+        ,encpt_mbr_pswd = coalesce(#{encptMbrPswd}, encpt_mbr_pswd)
+        ,encpt_mbr_telno = coalesce(#{encptMbrTelno}, encpt_mbr_telno)
+        ,mbr_type_cd = coalesce(#{mbrTypeCd}, mbr_type_cd)
+        ,mbr_join_stts_cd = coalesce(#{mbrJoinSttsCd}, mbr_join_stts_cd)
+        ,mbr_join_dt = coalesce(to_timestamp(#{mbrJoinDt}, 'YYYY-MM-DD HH24:MI:SS'), mbr_join_dt)
+        ,mbr_whdwl_rsn = coalesce(#{mbrWhdwlRsn}, mbr_whdwl_rsn)
+        ,mbr_whdwl_dt = coalesce(to_timestamp(#{mbrWhdwlDt}, 'YYYY-MM-DD HH24:MI:SS'), mbr_whdwl_dt)
+        ,encpt_bfr_pswd = coalesce(#{encptBfrPswd}, encpt_bfr_pswd)
+        ,pswd_chg_dt = coalesce(to_timestamp(#{pswdChgDt}, 'YYYY-MM-DD HH24:MI:SS'), pswd_chg_dt)
+        ,pswd_err_nmtm = coalesce(#{pswdErrNmtm}, pswd_err_nmtm)
+        ,link_info_idntf_id = coalesce(#{linkInfoIdntfId}, link_info_idntf_id)
+        ,cert_token_vl = coalesce(#{certTokenVl}, cert_token_vl)
+        ,mdfr_id = coalesce(#{mdfrId}, mdfr_id)
+        ,mdfcn_dt = now()
 
         WHERE 1=1
         <if test="mbrNo != null and mbrNo != ''">
@@ -258,32 +258,32 @@
         /* 대국민포털_회원정보기본 저장 (MbrInfoMapper.insertMbrInfo) */
         INSERT INTO kids_own.TB_PP_M_MBR_INFO
         (
-             mbr_no
-            ,mbr_id
-            ,encpt_mbr_flnm
-            ,encpt_mbr_eml_nm
-            ,encpt_mbr_pswd
-            ,encpt_mbr_telno
-            ,mbr_type_cd
-            ,mbr_join_stts_cd
-            ,mbr_join_dt
-            ,mbr_whdwl_rsn
-            ,mbr_whdwl_dt
-            ,encpt_bfr_pswd
-            ,pswd_chg_dt
-            ,pswd_err_nmtm
-            ,link_info_idntf_id
-            ,cert_token_vl
-            ,rgtr_id
-            ,reg_dt
+          mbr_no
+        ,mbr_id
+        ,encpt_mbr_flnm
+        ,encpt_mbr_eml_nm
+        ,encpt_mbr_pswd
+        ,encpt_mbr_telno
+        ,mbr_type_cd
+        ,mbr_join_stts_cd
+        ,mbr_join_dt
+        ,mbr_whdwl_rsn
+        ,mbr_whdwl_dt
+        ,encpt_bfr_pswd
+        ,pswd_chg_dt
+        ,pswd_err_nmtm
+        ,link_info_idntf_id
+        ,cert_token_vl
+        ,rgtr_id
+        ,reg_dt
 
-            ,mdfr_id
-            ,mdfcn_dt
+        ,mdfr_id
+        ,mdfcn_dt
 
         )
         VALUES
-        (
-             #{mbrNo}
+            (
+              #{mbrNo}
             ,#{mbrId}
             ,#{encptMbrFlnm}
             ,#{encptMbrEmlNm}
@@ -305,26 +305,26 @@
             ,#{mdfrId}
             ,now()
 
-        )
-        ON CONFLICT(mbr_no)
+            )
+            ON CONFLICT(mbr_no)
         DO UPDATE SET
-             mbr_id = coalesce(excluded.mbr_id, kids_own.TB_PP_M_MBR_INFO.mbr_id)
-            ,encpt_mbr_flnm = coalesce(excluded.encpt_mbr_flnm, kids_own.TB_PP_M_MBR_INFO.encpt_mbr_flnm)
-            ,encpt_mbr_eml_nm = coalesce(excluded.encpt_mbr_eml_nm, kids_own.TB_PP_M_MBR_INFO.encpt_mbr_eml_nm)
-            ,encpt_mbr_pswd = coalesce(excluded.encpt_mbr_pswd, kids_own.TB_PP_M_MBR_INFO.encpt_mbr_pswd)
-            ,encpt_mbr_telno = coalesce(excluded.encpt_mbr_telno, kids_own.TB_PP_M_MBR_INFO.encpt_mbr_telno)
-            ,mbr_type_cd = coalesce(excluded.mbr_type_cd, kids_own.TB_PP_M_MBR_INFO.mbr_type_cd)
-            ,mbr_join_stts_cd = coalesce(excluded.mbr_join_stts_cd, kids_own.TB_PP_M_MBR_INFO.mbr_join_stts_cd)
-            ,mbr_join_dt = coalesce(excluded.mbr_join_dt, kids_own.TB_PP_M_MBR_INFO.mbr_join_dt)
-            ,mbr_whdwl_rsn = coalesce(excluded.mbr_whdwl_rsn, kids_own.TB_PP_M_MBR_INFO.mbr_whdwl_rsn)
-            ,mbr_whdwl_dt = coalesce(excluded.mbr_whdwl_dt, kids_own.TB_PP_M_MBR_INFO.mbr_whdwl_dt)
-            ,encpt_bfr_pswd = coalesce(excluded.encpt_bfr_pswd, kids_own.TB_PP_M_MBR_INFO.encpt_bfr_pswd)
-            ,pswd_chg_dt = coalesce(excluded.pswd_chg_dt, kids_own.TB_PP_M_MBR_INFO.pswd_chg_dt)
-            ,pswd_err_nmtm = coalesce(excluded.pswd_err_nmtm, kids_own.TB_PP_M_MBR_INFO.pswd_err_nmtm)
-            ,link_info_idntf_id = coalesce(excluded.link_info_idntf_id, kids_own.TB_PP_M_MBR_INFO.link_info_idntf_id)
-            ,cert_token_vl = coalesce(excluded.cert_token_vl, kids_own.TB_PP_M_MBR_INFO.cert_token_vl)
-            ,mdfr_id = coalesce(excluded.mdfr_id, kids_own.TB_PP_M_MBR_INFO.mdfr_id)
-            ,mdfcn_dt = now()
+            mbr_id = coalesce(excluded.mbr_id, kids_own.TB_PP_M_MBR_INFO.mbr_id)
+                           ,encpt_mbr_flnm = coalesce(excluded.encpt_mbr_flnm, kids_own.TB_PP_M_MBR_INFO.encpt_mbr_flnm)
+                           ,encpt_mbr_eml_nm = coalesce(excluded.encpt_mbr_eml_nm, kids_own.TB_PP_M_MBR_INFO.encpt_mbr_eml_nm)
+                           ,encpt_mbr_pswd = coalesce(excluded.encpt_mbr_pswd, kids_own.TB_PP_M_MBR_INFO.encpt_mbr_pswd)
+                           ,encpt_mbr_telno = coalesce(excluded.encpt_mbr_telno, kids_own.TB_PP_M_MBR_INFO.encpt_mbr_telno)
+                           ,mbr_type_cd = coalesce(excluded.mbr_type_cd, kids_own.TB_PP_M_MBR_INFO.mbr_type_cd)
+                           ,mbr_join_stts_cd = coalesce(excluded.mbr_join_stts_cd, kids_own.TB_PP_M_MBR_INFO.mbr_join_stts_cd)
+                           ,mbr_join_dt = coalesce(excluded.mbr_join_dt, kids_own.TB_PP_M_MBR_INFO.mbr_join_dt)
+                           ,mbr_whdwl_rsn = coalesce(excluded.mbr_whdwl_rsn, kids_own.TB_PP_M_MBR_INFO.mbr_whdwl_rsn)
+                           ,mbr_whdwl_dt = coalesce(excluded.mbr_whdwl_dt, kids_own.TB_PP_M_MBR_INFO.mbr_whdwl_dt)
+                           ,encpt_bfr_pswd = coalesce(excluded.encpt_bfr_pswd, kids_own.TB_PP_M_MBR_INFO.encpt_bfr_pswd)
+                           ,pswd_chg_dt = coalesce(excluded.pswd_chg_dt, kids_own.TB_PP_M_MBR_INFO.pswd_chg_dt)
+                           ,pswd_err_nmtm = coalesce(excluded.pswd_err_nmtm, kids_own.TB_PP_M_MBR_INFO.pswd_err_nmtm)
+                           ,link_info_idntf_id = coalesce(excluded.link_info_idntf_id, kids_own.TB_PP_M_MBR_INFO.link_info_idntf_id)
+                           ,cert_token_vl = coalesce(excluded.cert_token_vl, kids_own.TB_PP_M_MBR_INFO.cert_token_vl)
+                           ,mdfr_id = coalesce(excluded.mdfr_id, kids_own.TB_PP_M_MBR_INFO.mdfr_id)
+                           ,mdfcn_dt = now()
 
     </insert>
 
@@ -332,9 +332,9 @@
         /* 대국민포털_회원정보기본 삭제 (MbrInfoMapper.deleteMbrInfo) */
         DELETE FROM kids_own.TB_PP_M_MBR_INFO
         WHERE 1=1
-        AND mbr_no = #{mbrNo}
+          AND mbr_no = #{mbrNo}
     </delete>
-    
+
     <select id="findMbrInfoId" parameterType="MbrInfoPVO"  resultType="MbrInfoRVO">
         /* 대국민포털_회원정보 ID 존재 여부 조회  */
         SELECT
@@ -344,20 +344,20 @@
             kids_own.TB_PP_M_MBR_INFO
         WHERE
             1=1
-        AND
+          AND
             mbr_no = #{mbrNo}
-        LIMIT 1
+            LIMIT 1
     </select>
-    
+
     <update id="updateMbrInfoPw" parameterType="MbrInfoPVO">
         /* 대국민포털_회원정보 PW 수정 (MbrInfoMapper.updateMbrInfoPw) */
         UPDATE kids_own.TB_PP_M_MBR_INFO
         SET
             encpt_mbr_pswd = coalesce(#{encptMbrPswd}, encpt_mbr_pswd)
-            ,mdfr_id = coalesce(#{mdfrId}, mdfr_id)
-            ,mdfcn_dt = now()
+          ,mdfr_id = coalesce(#{mdfrId}, mdfr_id)
+          ,mdfcn_dt = now()
         WHERE 1=1
-            AND mbr_no = #{mbrNo}
+          AND mbr_no = #{mbrNo}
     </update>
 
 </mapper>

@@ -70,7 +70,7 @@ public class JwtTokenProvider {
      * @param expTime(밀리초)
      * @return
      */
-    public String createUpdtTokenCn(String issuer, String mbrId, Long expTime) {
+    public String createUpdtTokenCn(String issuer, String mbrId, long expTime) {
         if(expTime < 0L){
             // 만료시간은 지났습니다.
             throw new ApplicationException(MessageContextHolder.getMessage("ui.token.expired"));

@@ -6,6 +6,7 @@ import kr.or.kids.domain.ca.mail.client.sensemail.SenseMailResponse;
 import kr.or.kids.domain.ca.mail.service.MailService;
 import kr.or.kids.domain.ca.mail.vo.MailListVO;
 import kr.or.kids.domain.ca.mail.vo.MailSendReqVO;
+import kr.or.kids.global.system.common.vo.ApiPrnDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +25,10 @@ public class MailController {
     @Operation( summary = "메일 발송", description = "메일 발송 성공합니다.")
     @ApiResponse(responseCode = "200", description = "메일 발송 성공")
     @PostMapping("/send")
-    public ResponseEntity<SenseMailResponse> sendMail(
+    public ResponseEntity<ApiPrnDto> sendMail(
             @RequestBody MailSendReqVO req
     ) {
-        SenseMailResponse res = mailService.send(req);
-        return ResponseEntity.ok(res);   // ✅ 반드시 Body 포함
+        return ResponseEntity.ok(mailService.send(req));
     }
     @Operation( summary = "메일 발송 조회", description = "메일 발송 조회합니다.")
     @ApiResponse(responseCode = "200", description = "메일 발송 조회")

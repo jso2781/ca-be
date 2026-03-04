@@ -7,54 +7,56 @@
 
     <!-- 등록 -->
     <insert id="insertHist">
-        <selectKey keyProperty="emlSndngHistSn" resultType="java.math.BigInteger" order="BEFORE">
-          --  SELECT nextval('kids_own.tb_ca_l_eml_sndng_hist_seq')
-            SELECT nextval('tb_ca_l_eml_sndng_hist_seq')
+        <selectKey keyProperty="emlSndngHstrySn" resultType="java.math.BigInteger" order="BEFORE">
+            SELECT nextval('kids_own.sq_ca_eml_sndng_hist_sn')
         </selectKey>
-        INSERT INTO public.tb_ca_l_eml_sndng_hist (
-        --INSERT INTO "TB_CA_L_EML_SNDNG_HIST" (
-                                                    eml_sndng_hist_sn
+        INSERT INTO kids_own.tb_ca_m_eml_sndng_hist (
+                                                    eml_sndng_hstry_sn
                                                   , eml_sndng_sn
                                                   , rcvr_eml_addr
                                                   , rcvr_flnm
                                                   , sndng_rslt_cd
-                                                  , fail_rsn_cn
-                                                  , sndng_try_cnt
-                                                  , sndng_dttm
-                                                  , ext_sndng_rslt_cd
-                                                  , ext_fail_msg
-                                                  , ext_msg_id
+                                                  , fail_rsn
+                                                  , rsnd_nmtm
+                                                  , dsptch_dt
+                                                  , otsd_eml_orgnl_rslt_cd
+                                                  , otsd_eml_err_msg_cn
+                                                  , otsd_eml_msg_id
                                                   , reg_dt
                                                   , rgtr_id
+                                                  , mdfcn_dt
+                                                  , mdfr_id
                                                 ) VALUES (
-                                                             #{emlSndngHistSn}
+                                                             #{emlSndngHstrySn}
                                                            , #{emlSndngSn}
                                                            , #{rcvrEmlAddr}
                                                            , #{rcvrFlnm}
                                                            , #{sndngRsltCd}
-                                                           , #{failRsnCn}
-                                                           , #{sndngTryCnt}
-                                                           , #{sndngDttm}
-                                                           , #{extSndngRsltCd}
-                                                           , #{extFailMsg}
-                                                           , #{extMsgId}
+                                                           , #{failRsn}
+                                                           , #{rsndNmtm}
+                                                           , #{dsptchDt}
+                                                           , #{otsdEmlOrgnlRsltCd}
+                                                           , #{otsdEmlErrMsgCn}
+                                                           , #{otsdEmlMsgId}
                                                            , NOW()
                                                            , #{rgtrId}
+                                                           , NOW()
+                                                           , #{mdfrId}
                                                          )
     </insert>
     <select id="selectMailSendList" resultType="kr.or.kids.domain.ca.mail.vo.MailListVO">
 
         SELECT
-              h.eml_sndng_hist_sn                     AS seqNo
-            , h.sndng_rslt_cd                         AS status
-            , h.rcvr_eml_addr                         AS receiver
-            , m.eml_ttl                               AS subject
-            , h.sndng_dttm                            AS sendDateTime
-            , h.fail_rsn_cn                           AS reason
-        FROM public.tb_ca_l_eml_sndng_hist h
-        INNER JOIN public.tb_ca_m_eml_sndng m
+               h.eml_sndng_hstry_sn                     AS seqNo
+             , h.sndng_rslt_cd                         AS status
+             , h.rcvr_eml_addr                         AS receiver
+             , m.eml_ttl                               AS subject
+             , h.dsptch_dt                            AS sendDateTime
+             , h.fail_rsn                             AS reason
+        FROM kids_own.tb_ca_m_eml_sndng_hist h
+        INNER JOIN kids_own.tb_ca_m_eml_sndng m
                 ON h.eml_sndng_sn = m.eml_sndng_sn
-         ORDER BY h.sndng_dttm DESC
+        ORDER BY h.dsptch_dt desc
 
     </select>
 

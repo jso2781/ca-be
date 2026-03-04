@@ -1,0 +1,234 @@
+start	[http-nio-8088-exec-3]	2026-01-15 15:57:00.669	263MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-3]	2026-01-15 15:57:00.691	262MB	288MB	176	9001		0:0:0:0:0:0:0:1		22		
+start	[http-nio-8088-exec-7]	2026-01-15 15:57:00.707	262MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-7]	2026-01-15 15:57:00.707	261MB	288MB	256	9001	isPartialItem=false;iIDs[0]=/sample/Calendar.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		0		
+start	[http-nio-8088-exec-2]	2026-01-15 17:20:32.822	267MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-2]	2026-01-15 17:20:32.822	267MB	288MB	176	9001		127.0.0.1		0		
+start	[http-nio-8088-exec-6]	2026-01-15 17:20:32.838	267MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-6]	2026-01-15 17:20:32.854	266MB	288MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		16		
+start	[http-nio-8088-exec-1]	2026-01-15 17:26:08.327	267MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-1]	2026-01-15 17:26:08.337	267MB	288MB	176	9001		0:0:0:0:0:0:0:1		10		
+start	[http-nio-8088-exec-7]	2026-01-15 17:26:08.341	266MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-7]	2026-01-15 17:26:08.346	266MB	288MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		5		
+start	[http-nio-8088-exec-2]	2026-01-15 17:28:18.450	260MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-2]	2026-01-15 17:28:18.450	260MB	288MB	176	9001		0:0:0:0:0:0:0:1		0		
+start	[http-nio-8088-exec-8]	2026-01-15 17:28:18.461	260MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-8]	2026-01-15 17:28:18.478	260MB	288MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		17		
+start	[http-nio-8088-exec-6]	2026-01-15 17:43:05.119	260MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-6]	2026-01-15 17:43:05.119	260MB	288MB	176	9001		127.0.0.1		0		
+start	[http-nio-8088-exec-7]	2026-01-15 17:43:05.119	259MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-7]	2026-01-15 17:43:05.132	259MB	288MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		13		
+start	[http-nio-8088-exec-4]	2026-01-15 17:44:00.685	259MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-4]	2026-01-15 17:44:00.685	259MB	288MB	176	9001		127.0.0.1		0		
+start	[http-nio-8088-exec-2]	2026-01-15 17:44:00.691	259MB	288MB	null	null	null	null	null	null		
+end  	[http-nio-8088-exec-2]	2026-01-15 17:44:00.691	259MB	288MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		0		
+start	[http-nio-127.0.0.1-8080-exec-4]	2026-01-16 16:29:10.638	23MB	86MB	null	null	null	null	null	null		
+start	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:29:10.640	22MB	86MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-4]	2026-01-16 16:29:10.728	22MB	86MB	176	9001		127.0.0.1		90		
+end  	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:29:10.728	22MB	86MB	176	9001		127.0.0.1		88		
+start	[http-nio-127.0.0.1-8080-exec-5]	2026-01-16 16:29:10.754	22MB	86MB	null	null	null	null	null	null		
+start	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 16:29:10.754	22MB	86MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-5]	2026-01-16 16:29:10.785	22MB	86MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		31		
+end  	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 16:29:10.785	22MB	86MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		31		
+start	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:30:23.967	22MB	86MB	null	null	null	null	null	null		
+start	[http-nio-127.0.0.1-8080-exec-4]	2026-01-16 16:30:23.967	22MB	86MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-4]	2026-01-16 16:30:24.004	22MB	86MB	176	9001		127.0.0.1		37		
+end  	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:30:24.004	22MB	86MB	176	9001		127.0.0.1		37		
+start	[http-nio-127.0.0.1-8080-exec-5]	2026-01-16 16:30:24.022	22MB	86MB	null	null	null	null	null	null		
+start	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 16:30:24.023	22MB	86MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-5]	2026-01-16 16:30:24.044	21MB	86MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		22		
+end  	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 16:30:24.044	21MB	86MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		21		
+start	[http-nio-127.0.0.1-8080-exec-4]	2026-01-16 16:31:57.811	32MB	84MB	null	null	null	null	null	null		
+start	[http-nio-127.0.0.1-8080-exec-5]	2026-01-16 16:31:57.811	32MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-5]	2026-01-16 16:31:57.868	32MB	84MB	176	9001		127.0.0.1		57		
+end  	[http-nio-127.0.0.1-8080-exec-4]	2026-01-16 16:31:57.868	32MB	84MB	176	9001		127.0.0.1		57		
+start	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:31:57.893	32MB	84MB	null	null	null	null	null	null		
+start	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 16:31:57.894	32MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 16:31:57.910	31MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		16		
+end  	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:31:57.919	31MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		26		
+start	[http-nio-127.0.0.1-8080-exec-2]	2026-01-16 16:33:09.464	44MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-2]	2026-01-16 16:33:09.468	43MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		4		
+start	[http-nio-127.0.0.1-8080-exec-4]	2026-01-16 16:33:39.033	38MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-4]	2026-01-16 16:33:39.035	38MB	84MB	176	9001		127.0.0.1		2		
+start	[http-nio-127.0.0.1-8080-exec-5]	2026-01-16 16:33:39.047	38MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-5]	2026-01-16 16:33:39.048	38MB	84MB	176	9001		127.0.0.1		1		
+start	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 16:33:39.054	38MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 16:33:39.058	38MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		4		
+start	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:33:39.060	38MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:33:39.064	38MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		4		
+start	[http-nio-127.0.0.1-8080-exec-8]	2026-01-16 16:33:55.081	35MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-8]	2026-01-16 16:33:55.083	35MB	84MB	176	9001		127.0.0.1		2		
+start	[http-nio-127.0.0.1-8080-exec-9]	2026-01-16 16:33:55.098	35MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-9]	2026-01-16 16:33:55.099	35MB	84MB	176	9001		127.0.0.1		1		
+start	[http-nio-127.0.0.1-8080-exec-10]	2026-01-16 16:33:55.105	35MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-10]	2026-01-16 16:33:55.108	34MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		3		
+start	[http-nio-127.0.0.1-8080-exec-2]	2026-01-16 16:33:55.109	34MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-2]	2026-01-16 16:33:55.113	34MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		4		
+start	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:35:29.954	42MB	84MB	null	null	null	null	null	null		
+start	[http-nio-127.0.0.1-8080-exec-7]	2026-01-16 16:35:29.954	42MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 16:35:29.956	42MB	84MB	176	9001		127.0.0.1		2		
+start	[http-nio-127.0.0.1-8080-exec-8]	2026-01-16 16:35:29.966	42MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-8]	2026-01-16 16:35:29.968	42MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		2		
+end  	[http-nio-127.0.0.1-8080-exec-7]	2026-01-16 16:35:29.970	42MB	84MB	176	9001		127.0.0.1		16		
+start	[http-nio-127.0.0.1-8080-exec-9]	2026-01-16 16:35:30.020	42MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-9]	2026-01-16 16:35:30.022	42MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		2		
+start	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 17:07:31.007	22MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 17:07:31.008	22MB	84MB	176	9001		127.0.0.1		1		
+start	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 17:07:31.012	22MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 17:07:31.012	22MB	84MB	176	9001		127.0.0.1		0		
+start	[http-nio-127.0.0.1-8080-exec-8]	2026-01-16 17:07:31.016	22MB	84MB	null	null	null	null	null	null		
+start	[http-nio-127.0.0.1-8080-exec-7]	2026-01-16 17:07:31.017	22MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-8]	2026-01-16 17:07:31.018	22MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		2		
+end  	[http-nio-127.0.0.1-8080-exec-7]	2026-01-16 17:07:31.019	22MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		2		
+start	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 17:08:44.654	43MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-6]	2026-01-16 17:08:44.654	43MB	84MB	176	9001		127.0.0.1		0		
+start	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 17:08:44.662	43MB	84MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 17:08:44.664	43MB	84MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		2		
+start	[http-nio-127.0.0.1-8080-exec-2]	2026-01-16 17:19:38.941	38MB	96MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-2]	2026-01-16 17:19:38.957	38MB	96MB	176	9001		127.0.0.1		16		
+start	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 17:19:38.966	38MB	96MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-3]	2026-01-16 17:19:38.975	37MB	96MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		9		
+start	[http-nio-127.0.0.1-8080-exec-9]	2026-01-19 18:17:41.715	128MB	176MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-9]	2026-01-19 18:17:41.746	128MB	176MB	176	9001		127.0.0.1		31		
+start	[http-nio-127.0.0.1-8080-exec-10]	2026-01-19 18:17:41.746	128MB	176MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-10]	2026-01-19 18:17:41.762	128MB	176MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		16		
+start	[http-nio-127.0.0.1-8080-exec-7]	2026-01-26 14:32:43.727	65MB	160MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-7]	2026-01-26 14:32:43.734	65MB	160MB	176	9001		127.0.0.1		7		
+start	[http-nio-127.0.0.1-8080-exec-5]	2026-01-26 14:32:43.738	65MB	160MB	null	null	null	null	null	null		
+end  	[http-nio-127.0.0.1-8080-exec-5]	2026-01-26 14:32:43.743	65MB	160MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	127.0.0.1		5		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-02 10:08:41.937	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-02 10:08:41.949	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		12		
+start	[http-nio-0.0.0.0-8080-exec-7]	2026-02-02 10:08:41.954	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-7]	2026-02-02 10:08:41.959	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		5		
+start	[http-nio-0.0.0.0-8080-exec-5]	2026-02-02 14:08:42.675	41MB	120MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-5]	2026-02-02 14:08:42.692	41MB	120MB	176	9001		0:0:0:0:0:0:0:1		17		
+start	[http-nio-0.0.0.0-8080-exec-6]	2026-02-02 14:08:42.708	40MB	120MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-6]	2026-02-02 14:08:42.708	40MB	120MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		0		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		
+start	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.490	64MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-8]	2026-02-19 17:33:24.508	63MB	108MB	176	9001		0:0:0:0:0:0:0:1		18		
+start	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.512	63MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-3]	2026-02-19 17:33:24.518	63MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		6		
+start	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.627	44MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-1]	2026-02-20 16:17:35.654	43MB	108MB	176	9001		0:0:0:0:0:0:0:1		27		
+start	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.661	43MB	108MB	null	null	null	null	null	null		
+end  	[http-nio-0.0.0.0-8080-exec-4]	2026-02-20 16:17:35.669	43MB	108MB	256	9001	isPartialItem=false;iIDs[0]=/sample/jsonSample.ozr, modifiedTimes[0]=0, isCompress[0]=true, isObjStreams[0]=false, 	0:0:0:0:0:0:0:1		8		

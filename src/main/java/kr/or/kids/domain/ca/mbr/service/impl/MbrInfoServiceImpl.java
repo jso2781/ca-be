@@ -38,7 +38,7 @@ public class MbrInfoServiceImpl implements MbrInfoService
             PageHelper.startPage(pageNum, pageSize);
 
             // UserMapper의 list() 메서드 호출 (PageHelper가 자동으로 페이징 쿼리 적용)
-            List<MbrInfoRVO> mbrList = mbrInfoMapper.list();
+            List<MbrInfoRVO> mbrList = mbrInfoMapper.getMbrInfo();
 
             log.info("=== DB 조회 결과: userList.size()={} ===", mbrList.size());
 

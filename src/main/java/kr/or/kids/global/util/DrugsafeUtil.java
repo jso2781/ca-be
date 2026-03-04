@@ -152,6 +152,11 @@ public class DrugsafeUtil {
 
         String rtrResult = value;
 
+
+        if (value == null || value.trim().isEmpty()) {
+            return value;
+        }
+
         if (part.equals("name")) {
             int len = value.length();
 
@@ -166,10 +171,11 @@ public class DrugsafeUtil {
 
         } else if (part.equals("tel")) {
 
-
             // 숫자만 추출
             String digits = value.replaceAll("[^0-9]", "");
-
+            if (digits.length() < 7) {
+                return value;
+            }
             String first;
             String middle;
             String last;
@@ -181,7 +187,19 @@ public class DrugsafeUtil {
                 // 02 지역번호
                 first = digits.substring(0, 2);
                 last = digits.substring(digits.length() - 4);
-                middle = digits.substring(2, digits.length() - 4);
+                //middle = digits.substring(2, digits.length() - 4);
+                int middleLength = digits.length() - 6; // 전체 - (02 + 뒤4)
+
+                if (middleLength == 3) {
+                    // 02-XXX-1234
+                    middle = digits.substring(2, 5);
+                } else if (middleLength == 4) {
+                    // 02-XXXX-1234
+                    middle = digits.substring(2, 6);
+                }else {
+                    // 예외 케이스
+                    middle = digits.substring(2, digits.length() - 4);
+                }
 
             } else {
                 // 010 또는 기타 3자리 지역번호
@@ -198,7 +216,153 @@ public class DrugsafeUtil {
 
 
         }
+        // ────────────────────────────────────────────
+        // 주민등록번호 마스킹
+        // 900101-1234567 → 900101-*******
+        // 9001011234567  → 900101*******
+        // ────────────────────────────────────────────
+        else if (part.equals("rrno")) {
+            if (value.matches("\\d{6}-\\d{7}")) {
+                return value.substring(0, 6) + "-*******";
+            }
+            if (value.matches("\\d{13}")) {
+                return value.substring(0, 6) + "*******";
+            }
+            return value;
+        }
+        // ────────────────────────────────────────────
+        // 이메일 마스킹
+        // 로컬 앞 2자 노출, 나머지 * / 도메인은 그대로
+        // abcde@gmail.com    → ab***@gmail.com
+        // abcdefgh@gmail.com → abcd****@gmail.com
+        // ab@gmail.com       → ab@gmail.com  (2자 이하 마스킹 불가)
+        // ────────────────────────────────────────────
+        else if (part.equals("email")) {
 
+            int atIdx = value.indexOf('@');
+
+            if (atIdx > 0) {
+                String local  = value.substring(0, atIdx);
+                String domain = value.substring(atIdx);   // @ 포함
+
+                String maskedLocal;
+                if (local.length() <= 2) {
+                    maskedLocal = local;                  // 2자 이하는 마스킹 불가
+                } else {
+                    // 앞 2자 노출 + 나머지 전체 *
+                    maskedLocal = local.substring(0, 2) + "*".repeat(local.length() - 2);
+                }
+                rtrResult = maskedLocal + domain;
+            }
+        }
+        // ────────────────────────────────────────────
+        // 생년월일 마스킹
+        // 월일을 마스킹 (예: 2012****)
+        // ────────────────────────────────────────────
+        else if (part.equals("birth")) {
+
+            if (value.matches("\\d{8}")) {
+                // 20121225 → 2012****
+                rtrResult = value.substring(0, 4) + "****";
+            } else if (value.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                // 2012-12-25 → 2012-**-**
+                rtrResult = value.substring(0, 4) + "-**-**";
+            } else if (value.matches("\\d{6}")) {
+                // 920615 → 92****
+                rtrResult = value.substring(0, 2) + "****";
+            }
+        }
+
+        // ────────────────────────────────────────────
+        // 주소 마스킹
+        // 도로명 이하의 건물번호 및 상세주소의 숫자 마스킹
+        // (예: 서울시 성북구 북악산로 *** ***동 ****호)
+        // ────────────────────────────────────────────
+        else if (part.equals("addr")) {
+
+            // 숫자 연속(1자리 이상)을 * 로 치환 (Java 8 호환)
+            StringBuffer sb = new StringBuffer();
+            java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("\\d+").matcher(value);
+            while (matcher.find()) {
+                matcher.appendReplacement(sb, "*".repeat(matcher.group().length()));
+            }
+            matcher.appendTail(sb);
+            rtrResult = sb.toString();
+        }
+        // ────────────────────────────────────────────
+        // IPv4 주소 마스킹
+        // 17~24비트 영역을 마스킹 (예: 203.123.***,789)
+        // ────────────────────────────────────────────
+        else if (part.equals("ip")) {
+
+            String[] parts = value.split("\\.");
+            if (parts.length == 4) {
+                rtrResult = parts[0] + "." + parts[1] + "." + "*".repeat(parts[2].length()) + "." + parts[3];
+            }
+        }
+        // ────────────────────────────────────────────
+        // 카드번호 마스킹
+        // 처음 6 자리, 뒤 4자리 외 마스킹
+        // (예: 1234 - 56** - **** - 5678)
+        // ────────────────────────────────────────────
+        else if (part.equals("card")) {
+
+            String digits = value.replaceAll("[^0-9]", "");
+
+            if (digits.length() >= 10) {
+                String masked = digits.substring(0, 6)
+                        + "*".repeat(digits.length() - 10)
+                        + digits.substring(digits.length() - 4);
+
+                // 하이픈 포함 16자리 포맷으로 출력
+                if (masked.length() == 16) {
+                    rtrResult = masked.substring(0, 4) + "-"
+                            + masked.substring(4, 8) + "-"
+                            + masked.substring(8, 12) + "-"
+                            + masked.substring(12);
+                } else {
+                    rtrResult = masked;
+                }
+            }
+        }
+        // ────────────────────────────────────────────
+        // 여권번호 마스킹
+        // 뒤 4자리 마스킹
+        // M12345678 → M12345***(뒤4자리 마스킹)
+        // ────────────────────────────────────────────
+        else if (part.equals("passport")) {
+
+            if (value.length() > 4) {
+                rtrResult = value.substring(0, value.length() - 4) + "****";
+            }
+        }
+        // ────────────────────────────────────────────
+        // 운전면허번호 마스킹
+        // 뒤 4자리 마스킹
+        // 12-34-567890-12 → 12-34-5678**-**
+        // ────────────────────────────────────────────
+        else if (part.equals("license")) {
+
+            if (value.matches("\\d{2}-\\d{2}-\\d{6}-\\d{2}")) {
+                // 12-34-567890-12 → 12-34-5678**-**
+                rtrResult = value.substring(0, 10) + "**-**";
+            } else if (value.length() > 4) {
+                // 하이픈 없는 형식 등 예외: 뒤 4자리 마스킹
+                rtrResult = value.substring(0, value.length() - 4) + "****";
+            }
+
+        }
+        // ────────────────────────────────────────────
+        // CI(연계정보) 마스킹
+        // 처음 7자리 외 마스킹 (예: aBC45b7************...)
+        // ────────────────────────────────────────────
+        else if (part.equals("ci")) {
+
+            if (value.length() > 7) {
+                rtrResult = value.substring(0, 7) + "*".repeat(value.length() - 7);
+            }
+
+        }
         return rtrResult;
 
     }

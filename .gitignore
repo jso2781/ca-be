@@ -35,14 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### Logs ###
-logs/
-*.log
-*.log.gz
-
-
-node_modules
-.env
-.env.development
-.env.production
+/logs/api.log

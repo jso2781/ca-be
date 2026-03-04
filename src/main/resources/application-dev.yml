@@ -18,12 +18,12 @@ server:
 
 spring:
   redis:
-    #host: redis-dev-headless.redis-dev
-    #port: 6379
-    host: 192.168.2.149
-    port: 30901
-    password: kids2025!
-    timeout: 2000ms
+     host: redis-dev-headless.redis-dev
+     port: 6379
+   # host: 192.168.2.149
+   # port: 30901
+     password: kids2025!
+     timeout: 2000ms
   servlet:
     multipart:
       enabled: true
@@ -65,7 +65,7 @@ spring:
     password: 6k7i0d0s
   protocol: smtp
   default-encoding: UTF-8
-  test-mode: true
+  test-mode: false
   properties:
     mail:
       smtp:
@@ -76,14 +76,16 @@ spring:
         timeout: 5000
         writetimeout: 5000
         debug: true  # 추가 (XML과 일치)
-surem:
-  base-url: https://api.surem.com
-  user-code: YOUR_USER_CODE
-  secret-key: YOUR_SECRET_KEY
-address:
-  openapi:
-    url: https://business.juso.go.kr/addrink/addrLinkUrl.do
-    key: devU01TX0FVVEgyMDI2MDEwOTEzMDY1ODExNzQwOTQ=
+  surem:
+    baseUrl: https://api.surem.com
+    rcsUrl: https://rcs-api.surem.com
+    userCode: kidsadmin
+    secretKey: 3ywmxkmudrzijcnvktc07viz2uhr47517380807q
+    testMode: true
+  address:
+    openapi:
+      url: https://business.juso.go.kr/addrink/addrLinkUrl.do
+      key: devU01TX0FVVEgyMDI2MDEwOTEzMDY1ODExNzQwOTQ=
 springdoc:
   swagger-ui:
     #    doc-expansion: full           # API 목록 접힘 (선택)
@@ -131,7 +133,7 @@ mybatis:
     default-statement-timeout: 30
     default-fetch-size: 100
     safe-row-bounds-enabled: false
-    map-underscore-to-camel-case: false
+    map-underscore-to-camel-case: true
     local-cache-scope: session
     jdbc-type-for-null: NULL
     variables:

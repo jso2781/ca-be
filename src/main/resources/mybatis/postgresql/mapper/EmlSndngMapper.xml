@@ -8,22 +8,25 @@
     <!-- 등록 -->
     <insert id="insertEmlSndng" >
         <selectKey keyProperty="emlSndngSn" resultType="java.math.BigInteger" order="BEFORE">
-            SELECT nextval('tb_ca_m_eml_sndng_seq')
+            SELECT nextval('kids_own.sq_ca_eml_sndng_sn')
         </selectKey>
-        INSERT INTO public.tb_ca_m_eml_sndng (
+        INSERT INTO kids_own.tb_ca_m_eml_sndng (
                                           eml_sndng_sn
                                         , eml_ttl
                                         , eml_cn
                                         , sndpty_flnm
                                         , sndpty_eml_addr
                                         , rcvr_flnm
+                                        , otsd_eml_dmnd_id
                                         , rcvr_eml_addr
                                         , rcvr_jbps_nm
                                         , sndng_rslt_cd
                                         , atch_file_id
-                                        , sndng_dttm
+                                        , dsptch_dt
                                         , reg_dt
                                         , rgtr_id
+                                        , mdfcn_dt
+                                        , mdfr_id
                                 ) VALUES (
                                            #{emlSndngSn}
                                          , #{emlTtl}
@@ -31,19 +34,21 @@
                                          , #{sndptyFlnm}
                                          , #{sndptyEmlAddr}
                                          , #{rcvrFlnm}
+                                         , #{otsdEmlDmndId}
                                          , #{rcvrEmlAddr}
                                          , #{rcvrJbpsNm}
                                          , #{sndngRsltCd}
                                          , #{atchFileId}
-                                         , #{sndngDttm}
+                                         , #{dsptchDt}
                                          , NOW()
                                          , #{rgtrId}
+                                         , NOW()
+                                         , #{mdfrId}
                                          )
     </insert>
 
     <update id="updateResult">
-        -- UPDATE kids_own.tb_ca_e_eml_sndng  = 내부망에서 주석 해제
-        UPDATE public.tb_ca_m_eml_sndng
+        UPDATE kids_own.tb_ca_m_eml_sndng
         SET sndng_rslt_cd  = COALESCE(#{sndngRsltCd}, sndng_rslt_cd)
           , mdfcn_dt       = now()
           , mdfr_id        = COALESCE(#{mdfrId}, mdfr_id)

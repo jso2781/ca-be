@@ -4,13 +4,13 @@ import lombok.Data;
 
 @Data
 public class MailSendReqVO {
-    private String title;
-    private String content;
+    private String emlTtl;
+    private String emlCn;
 
-    private String senderName;
-    private String senderEmail;
+    private String sndptyFlnm;
+    private String sndptyEmlAddr;
 
-    private String receiverName;
-    private String receiverEmail;
+    private String rcvrFlnm;
+    private String rcvrEmlAddr;
 
 }

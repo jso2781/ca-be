@@ -4,10 +4,10 @@
 <mapper namespace="kr.or.kids.domain.ca.msg.mapper.MsgImgMapper">
 
     <select id="selectNextMsgImgSn" resultType="java.math.BigDecimal">
-        SELECT nextval('tb_ca_i_msg_img_seq')
+        SELECT nextval('kids_own.sq_ca_msg_img_sn')
     </select>
     <insert id="insertMsgImg" >
-        INSERT INTO public.tb_ca_i_msg_img (
+        INSERT INTO kids_link_own.tb_ca_i_msg_img (
                                                 msg_img_sn
                                               , seqno
                                               , file_cnt

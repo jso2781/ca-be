@@ -8,9 +8,6 @@ import lombok.Data;
 @Data
 public class SuremApiSendResponse {
 
-    /** 결과 코드 (성공/실패) */
-    private String result;
-
-    /** 에러 메시지 */
-    private String errmsg;
+    private String code;      // 호출 결과 코드
+    private String message;   // 오류 메시지
 }
